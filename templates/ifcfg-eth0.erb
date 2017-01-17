@@ -1,0 +1,24 @@
+DEVICE=<%= scope ['resolv_device1'] %>
+NAME=<%= scope ['resolv_name1'] %>
+HOTPLUG=yes
+ONBOOT=yes
+NM_CONTROLLED=no
+IPV6INIT=no
+DHCPV6C="no"
+#UUID=828de8b1-be2e-4ab2-ab31-3e57badc3060
+HWADDR=<%= scope.lookupvar('::macaddress_eth0') %>
+TYPE=Ethernet
+BOOTPROTO=static
+DEFROUTE=yes
+PEERDNS=yes
+PEERNTP=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+NM_CONTROLLED="no"
+NETWORK=<%= scope ['resolv_network'] %>
+IPADDR=<%= scope ['resolv_ipaddr'] %>
+NETMASK=<%= scope ['resolv_netmask'] %>
+GATEWAY=<%= scope ['resolv_gateway'] %>
+BROADCAST=<%= scope ['resolv_broadcast'] %>
+NOZEROCONF="yes"
+#ETHTOOL_OPTS="autoneg off speed 100 duplex full"
