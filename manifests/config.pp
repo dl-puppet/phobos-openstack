@@ -25,12 +25,12 @@ class openstack::config inherits openstack
 
 			file { 			  
 				
-				    "/etc/sysconfig/network-scripts/ifcfg-eth0":
-            content         => template("openstack/ifcfg-eth0.erb");
+				    #"/etc/sysconfig/network-scripts/ifcfg-eth0":
+            #content         => template("openstack/ifcfg-eth0.erb");
             #replace => "no";
             
-            "/etc/sysconfig/network-scripts/ifcfg-eth1":
-            content         => template("openstack/ifcfg-eth1.erb");
+            #"/etc/sysconfig/network-scripts/ifcfg-eth1":
+            #content         => template("openstack/ifcfg-eth1.erb");
             #replace => "no";
             
             "/etc/chrony.conf":

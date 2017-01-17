@@ -5,7 +5,7 @@
   "name": "phobos-openstack",
   "operatingsystem_support": [],
   "project_page": "https://github.com/dl-puppet/phobos-openstack",
-  "requirements": [],
+  "requirements": ['puppetlabs-stdlib'],
   "source": "",
   "summary": "",
   "tags": [],
