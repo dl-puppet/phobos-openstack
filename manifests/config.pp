@@ -12,15 +12,14 @@ class openstack::config inherits openstack
   # /etc/sysconfig/network-scripts/ifcfg-eth1:
   $resolv_device2               = $openstack::resolv_device2
   $resolv_name2                 = $openstack::resolv_name2  
-  
+
+
 	File {
       ensure          => $file_ensure,
       group           => $file_group,
       mode            => $file_mode,
       owner           => $file_owner,
       backup          => $file_backup,
-      #require         => Class['$package_name'],
-      #notify          => Service['$service_name'], #Si le fichier change, notifier le service pour redemarrage
 	}
 
 			file { 			  
