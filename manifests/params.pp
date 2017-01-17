@@ -1,17 +1,17 @@
 class openstack::params
 {
   
-      ######################################## PACKAGES ############################################
+      ##### PACKAGES #####
       $package_manage                   = true
       $package_name                     = ['chrony']
       $package_ensure                   = 'present'
 	  
-	    ###################################### CONFIG_FILES ##########################################   
-		  $file_ensure                      = 'present'       # Spécifier le type gérer:  fichiers, répertoires ou liens symboliques. Valeur possible: present, absent, file, directory, and link.    
-		  $file_backup                      = '.puppet-bak'   # le contenu du fichier doit être sauvegardé avant d'être remplacé.   
-		  $file_group                       = 'root'          # Quel groupe devrait posséder le fichier.
-		  $file_mode                        = '0644'          # Le mode d'autorisations pour le fichier désiré dans la notation symbolique (r,w,x,t,s,X,u,g,o)  ou numérique.
-		  $file_owner                       = 'root'          # L'utilisateur auquel le dossier devrait appartenir. peut être un nom d'utilisateur ou un ID utilisateur.
+	    ##### CONFIG_FILES #####   
+		  $file_ensure                      = 'present'    
+		  $file_backup                      = '.puppet-bak'   
+		  $file_group                       = 'root'
+		  $file_mode                        = '0644'
+		  $file_owner                       = 'root'
 
       ######### SERVICES ########
 			$service_name                     = 'chronyd'
@@ -22,7 +22,7 @@ class openstack::params
 		  $user                              = 'openstack'
 		  $user_ensure                       = present
 		  $user_uid                          = '2000'
-		  $user_managehome                   = 'false'
+		  $user_managehome                   = false
 		  $user_shell                        = '/sbin/nologin'
 	
       ####### IFCFG-ETH0 ####### 	

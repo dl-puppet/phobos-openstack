@@ -46,21 +46,19 @@ class openstack
 
   validate_string                ($file_ensure)      
   validate_string                ($file_backup)  
-  validate_string                ($file_group)   
-  validate_string                ($file_mode) 
-  validate_string                ($file_owner)   
+  #validate_string                ($file_group)   
+  #validate_string                ($file_mode) 
+  #validate_string                ($file_owner)   
   
   validate_string                ($service_name)
   validate_string                ($service_ensure)
   validate_bool                  ($service_enable)
 
   validate_string                ($user)
-  validate_string                ($group)
   validate_string                ($user_ensure)
   validate_string                ($user_uid)
-  validate_string                ($user_managehome)
-  validate_string                ($user_home)
-  validate_string                ($user_password)
+  validate_bool                  ($user_managehome)
+  validate_string                ($user_shell)
 
   anchor { 'openstack::begin': } ->
     class { '::openstack::install': } ->
