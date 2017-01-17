@@ -40,10 +40,11 @@ class openstack::params
       
 
       ####### CHRONY #######  
-      $servers  = [
-						'server 0.centos.pool.ntp.org iburst',
-						'server 1.centos.pool.ntp.org iburst',
-						'server 2.centos.pool.ntp.org iburst',
-						'server 3.centos.pool.ntp.org iburst',
+      $servers                            = 'server 0.centos.pool.ntp.org iburst'
+      #$servers  = [
+				#		'server 0.centos.pool.ntp.org iburst',
+					#	'server 1.centos.pool.ntp.org iburst',
+					#	'server 2.centos.pool.ntp.org iburst',
+					#	'server 3.centos.pool.ntp.org iburst',
       ]
 }
