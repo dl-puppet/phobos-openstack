@@ -40,12 +40,12 @@ class openstack::params
       
 
       ####### CHRONY #######  
-      $servers                            = 'server 0.centos.pool.ntp.org iburst'
+      $servers                            = '0.centos.pool.ntp.org iburst'
       $allow                              =  '192.168.122.0/24'
       #$servers  = [
-				#		'server 0.centos.pool.ntp.org iburst',
-					#	'server 1.centos.pool.ntp.org iburst',
-					#	'server 2.centos.pool.ntp.org iburst',
-					#	'server 3.centos.pool.ntp.org iburst',
+				#		'0.centos.pool.ntp.org iburst',
+					#	'1.centos.pool.ntp.org iburst',
+					#	'2.centos.pool.ntp.org iburst',
+					#	'3.centos.pool.ntp.org iburst',
       #]
 }
