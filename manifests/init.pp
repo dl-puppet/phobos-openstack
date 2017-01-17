@@ -37,8 +37,8 @@ class openstack
   $resolv_broadcast             = $openstack::resolv_broadcast,
  
   # /etc/sysconfig/network-scripts/ifcfg-eth1:
-  $resolv_device2               = $openstack::resolv_device2
-  $resolv_name2                 = $openstack::resolv_name2  
+  $resolv_device2               = $openstack::resolv_device2,
+  $resolv_name2                 = $openstack::resolv_name2,  
    
 ) inherits openstack::params  
 {
