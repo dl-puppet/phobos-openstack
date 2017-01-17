@@ -1,5 +1,3 @@
-# installation du logiciel
-
 class openstack::install inherits openstack
 {
 	if $openstack::package_manage == true { 
