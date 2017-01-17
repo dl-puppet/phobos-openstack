@@ -9,9 +9,9 @@ class openstack::params
 	    ##### CONFIG_FILES #####   
 		  $file_ensure                      = 'present'    
 		  $file_backup                      = '.puppet-bak'   
-		  $file_group                       = 'root'
+		  $file_group                       = '0'
 		  $file_mode                        = '0644'
-		  $file_owner                       = 'root'
+		  $file_owner                       = '0'
 
       ######### SERVICES ########
 			$service_name                     = 'chronyd'
