@@ -23,20 +23,6 @@ class openstack
 	$user_uid                     = $openstack::params::user_uid,
 	$user_managehome              = $openstack::params::user_managehome,
 	$user_shell                   = $openstack::params::user_shell,
-
-
-  # /etc/sysconfig/network-scripts/ifcfg-eth0:
-  $resolv_device1               = $openstack::resolv_device1,
-  $resolv_name1                 = $openstack::resolv_name1,
-  $resolv_network               = $openstack::resolv_network,
-  $resolv_ipaddr                = $openstack::resolv_ipaddr,
-  $resolv_netmask               = $openstack::resolv_netmask,
-  $resolv_gateway               = $openstack::resolv_gateway,
-  $resolv_broadcast             = $openstack::resolv_broadcast,
- 
-  # /etc/sysconfig/network-scripts/ifcfg-eth1:
-  $resolv_device2               = $openstack::resolv_device2,
-  $resolv_name2                 = $openstack::resolv_name2,  
    
 ) inherits openstack::params  
 {
