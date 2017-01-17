@@ -46,5 +46,5 @@ class openstack::params
 					#	'server 1.centos.pool.ntp.org iburst',
 					#	'server 2.centos.pool.ntp.org iburst',
 					#	'server 3.centos.pool.ntp.org iburst',
-      ]
+      #]
 }
