@@ -10,7 +10,7 @@ class openstack::params
 		  $file_ensure                      = 'present'       # Spécifier le type gérer:  fichiers, répertoires ou liens symboliques. Valeur possible: present, absent, file, directory, and link.    
 		  $file_backup                      = '.puppet-bak'   # le contenu du fichier doit être sauvegardé avant d'être remplacé.   
 		  $file_group                       = 'root'          # Quel groupe devrait posséder le fichier.
-		  $file_mode                        = '0440'          # Le mode d'autorisations pour le fichier désiré dans la notation symbolique (r,w,x,t,s,X,u,g,o)  ou numérique.
+		  $file_mode                        = '0644'          # Le mode d'autorisations pour le fichier désiré dans la notation symbolique (r,w,x,t,s,X,u,g,o)  ou numérique.
 		  $file_owner                       = 'root'          # L'utilisateur auquel le dossier devrait appartenir. peut être un nom d'utilisateur ou un ID utilisateur.
 
       ######### SERVICES ########
@@ -18,24 +18,12 @@ class openstack::params
 			$service_ensure                   = running            
 			$service_enable                   = true
 		
-			###### CONFIG_FILES ###### 
-			$default_file_name                 = ["openstack.conf"]
-			$default_file_path                 = '/etc/openstack.conf'     
-			$file_ensure                       = 'file'   
-			$file_backup                       = '.puppet-bak'   
-			$file_content                      = 'openstack/openstack.conf.erb' 
-			$file_group                        = 'openstack' 
-			$file_mode                         = '0644' 
-			$file_owner                        = 'openstack'   
-
 	    ####### USER ####### 
-		  $user                              = ''
-		  $group                             = ''
+		  $user                              = 'openstack'
 		  $user_ensure                       = present
-		  $user_gid                          = ''
-		  $user_managehome                   = ''
-		  $user_home                         = ''
-		  $user_password                     = ''
+		  $user_uid                          = '2000'
+		  $user_managehome                   = 'false'
+		  $user_shell                        = '/sbin/nologin'
 	
       ####### IFCFG-ETH0 ####### 	
 			$resolv_device1                     = 'eth0'

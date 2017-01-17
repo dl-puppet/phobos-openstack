@@ -19,12 +19,10 @@ class openstack
 
   ####### USER #######  
   $user                         = $openstack::params::user,
-  $group                        = $openstack::params::group,
 	$user_ensure                  = $openstack::params::user_ensure,
-	$user_gid                     = $openstack::params::user_gid,
+	$user_uid                     = $openstack::params::user_uid,
 	$user_managehome              = $openstack::params::user_managehome,
-	$user_home                    = $openstack::params::user_home,
-	$user_password                = $openstack::params::user_password,
+	$user_shell                   = $openstack::params::user_shell,
 
 
   # /etc/sysconfig/network-scripts/ifcfg-eth0:
@@ -59,7 +57,7 @@ class openstack
   validate_string                ($user)
   validate_string                ($group)
   validate_string                ($user_ensure)
-  validate_string                ($user_gid)
+  validate_string                ($user_uid)
   validate_string                ($user_managehome)
   validate_string                ($user_home)
   validate_string                ($user_password)
