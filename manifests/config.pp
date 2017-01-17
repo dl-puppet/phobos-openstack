@@ -20,7 +20,7 @@ class openstack::config inherits openstack
       owner           => $file_owner,
       backup          => $file_backup,
       #require         => Class['$package_name'],
-      notify          => Service['$service_name'], #Si le fichier change, notifier le service pour redemarrage
+      #notify          => Service['$service_name'], #Si le fichier change, notifier le service pour redemarrage
 	}
 
 			file { 			  
