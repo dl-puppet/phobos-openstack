@@ -94,8 +94,8 @@ class openstack
   validate_string                ($user_shell)
 
   ###### CHROMY ######
-  validate_string                ($allow)
-  validate_array                 ($server) 
+  validate_string                ($chromy_allow)
+  validate_array                 ($chromy_servers) 
   
   ###### MESSAGE ######
   validate_bool           ($dynamic)
