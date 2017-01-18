@@ -59,13 +59,6 @@ class openstack
   #/etc/issue.net: 
   $issue                        = $openstack::params::issue,
   $file_issue                   = $openstack::params::file_issue,
-  #files:    
-  $file_ensure_message          = $openstack::params::file_ensure,
-  $file_group_message           = $openstack::params::file_group,        
-  $file_mode_message            = $openstack::params::file_mode,        
-  $file_owner_message           = $openstack::params::file_owner,        
-  $file_backup_message          = $openstack::params::file_backup, 
-
    
 ) inherits openstack::params  
 {
@@ -96,6 +89,26 @@ class openstack
   ###### CHROMY ######
   validate_string                ($chromy_allow)
   validate_array                 ($chromy_servers) 
+  
+  #####   NETWORK  ######
+  # Config /etc/sysconfig/network :
+  validate_string                ($network_networking),
+  validate_string                ($network_nm),
+  validate_string                ($network_nozeroconf),
+  validate_string                ($network_gateway),
+  # /etc/sysconfig/network-scripts/ifcfg-eth0:
+  validate_string                ($resolv_device),
+  validate_string                ($resolv_type),
+  validate_string                ($resolv_hotplug),
+  validate_string                ($resolv_onboot),
+  validate_string                ($resolv_controlled),
+  validate_string                ($resolv_bootproto),
+  validate_string                ($resolv_peerdns),
+  validate_string                ($resolv_ipv6init),
+  # /etc/host.conf:
+  validate_string                ($host_conf),
+  # /etc/hosts:
+  validate_array                 ($list_host),
   
   ###### MESSAGE ######
   validate_bool           ($dynamic)
