@@ -24,6 +24,10 @@ class openstack
 	$user_managehome              = $openstack::params::user_managehome,
 	$user_shell                   = $openstack::params::user_shell,
 
+  #####   CHRONY  ######
+  $allow                        = $openstack::params:allow,
+  $servers                      = $openstack::params:server,
+
   #####   NETWORK  ######
   # Config /etc/sysconfig/network :
   $network_networking           = $system::params::network_networking,
@@ -65,26 +69,34 @@ class openstack
    
 ) inherits openstack::params  
 {
+  ###### PACKAGE ######
   validate_bool                  ($package_manage)
   validate_array                 ($package_name)
   validate_string                ($package_ensure)
 
+  ###### CONFIG ######
   validate_string                ($file_ensure)      
   validate_string                ($file_backup)  
   #validate_string                ($file_group)   
   #validate_string                ($file_mode) 
   #validate_string                ($file_owner)   
   
+  ###### SERVICE ######
   validate_string                ($service_name)
   validate_string                ($service_ensure)
   validate_bool                  ($service_enable)
 
+   ###### USER ######
   validate_string                ($user)
   validate_string                ($user_ensure)
   validate_string                ($user_uid)
   validate_bool                  ($user_managehome)
   validate_string                ($user_shell)
 
+  ###### CHROMY ######
+  validate_string                ($allow)
+  validate_array                 ($server) 
+  
   ###### MESSAGE ######
   validate_bool           ($dynamic)
   validate_string         ($file_dynamic)
