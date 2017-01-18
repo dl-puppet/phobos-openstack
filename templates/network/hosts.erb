@@ -3,7 +3,4 @@
 
 <%= scope.lookupvar('::ipaddress_eth0') %> 	<%= scope.lookupvar('::hostname') %>.<%= scope.lookupvar('::domain') %>  <%= scope.lookupvar('::hostname') %>
 
-<% scope['list_host'].each do |list_host| -%>
-server <%= list_host %>
-<% end -%>
 
