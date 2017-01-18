@@ -15,11 +15,11 @@ class openstack::config inherits openstack
 				            content => template("openstack/ntp/chrony.conf.erb");   
 				      			        
 	                  ###### MESSAGES #####
-                    "/etc/issue.net" :
-                    content   => template("openstack/messages/issue.net.erb");   
+                    #"/etc/issue.net" :
+                    #content   => template("openstack/messages/issue.net.erb");   
   
-                    "/etc/motd" :
-                    content   => template("openstack/messages/motd.erb"); 
+                    #"/etc/motd" :
+                    #content   => template("openstack/messages/motd.erb"); 
                                            			        
 				            ###### NETWORK #####                
                     # /etc/services: 
