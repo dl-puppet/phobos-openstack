@@ -25,46 +25,46 @@ class openstack
 	$user_shell                   = $openstack::params::user_shell,
 
   #####   CHRONY  ######
-  $allow                        = $openstack::params:allow,
-  $servers                      = $openstack::params:server,
+  $chromy_allow                 = $openstack::params::chromy_allow,
+  $chromy_servers               = $openstack::params::chromy_servers,
 
   #####   NETWORK  ######
   # Config /etc/sysconfig/network :
-  $network_networking           = $system::params::network_networking,
-  #$HOSTNAME                    = $system::params::HOSTNAME,
-  $network_nm                   = $system::params::network_nm,
-  $network_nozeroconf           = $system::params::network_nozeroconf,
-  $network_gateway              = $system::params::network_gateway,
-  #GATEWAY                      = $system::params::GATEWAY,
+  $network_networking           = $openstack::params::network_networking,
+  #$HOSTNAME                    = $openstack::params::HOSTNAME,
+  $network_nm                   = $openstack::params::network_nm,
+  $network_nozeroconf           = $openstack::params::network_nozeroconf,
+  $network_gateway              = $openstack::params::network_gateway,
+  #GATEWAY                      = $openstack::params::GATEWAY,
   # /etc/sysconfig/network-scripts/ifcfg-eth0:
-  $resolv_device                = $system::params::resolv_device,
-  $resolv_type                  = $system::params::resolv_type,
-  $resolv_hotplug               = $system::params::resolv_hotplug,
-  $resolv_onboot                = $system::params::resolv_onboot,
-  $resolv_controlled            = $system::params::resolv_controlled,
+  $resolv_device                = $openstack::params::resolv_device,
+  $resolv_type                  = $openstack::params::resolv_type,
+  $resolv_hotplug               = $openstack::params::resolv_hotplug,
+  $resolv_onboot                = $openstack::params::resolv_onboot,
+  $resolv_controlled            = $openstack::params::resolv_controlled,
   #$HWADDR                      = <%= scope.lookupvar('::macaddress_eth0') %>,
-  $resolv_bootproto             = $system::params::resolv_bootproto,
-  $resolv_peerdns               = $system::params::resolv_peerdns,
-  $resolv_ipv6init              = $system::params::resolv_ipv6init,
+  $resolv_bootproto             = $openstack::params::resolv_bootproto,
+  $resolv_peerdns               = $openstack::params::resolv_peerdns,
+  $resolv_ipv6init              = $openstack::params::resolv_ipv6init,
   # /etc/host.conf:
-  $host_conf                    = $system::params::host_conf,
+  $host_conf                    = $openstack::params::host_conf,
   # /etc/hosts:
-  $list_host                    = $system::params::list_host,
+  $list_host                    = $openstack::params::list_host,
 
   #####   MESSAGE ######
   #/etc/motd: 
-  $dynamic                      = $system::params::dynamic,
-  $file_dynamic                 = $system::params::file_dynamic,
-  $file_no_dynamic              = $system::params::file_no_dynamic,
+  $dynamic                      = $openstack::params::dynamic,
+  $file_dynamic                 = $openstack::params::file_dynamic,
+  $file_no_dynamic              = $openstack::params::file_no_dynamic,
   #/etc/issue.net: 
-  $issue                        = $system::params::issue,
-  $file_issue                   = $system::params::file_issue,
+  $issue                        = $openstack::params::issue,
+  $file_issue                   = $openstack::params::file_issue,
   #files:    
-  $file_ensure_message          = $system::params::file_ensure,
-  $file_group_message           = $system::params::file_group,        
-  $file_mode_message            = $system::params::file_mode,        
-  $file_owner_message           = $system::params::file_owner,        
-  $file_backup_message          = $system::params::file_backup, 
+  $file_ensure_message          = $openstack::params::file_ensure,
+  $file_group_message           = $openstack::params::file_group,        
+  $file_mode_message            = $openstack::params::file_mode,        
+  $file_owner_message           = $openstack::params::file_owner,        
+  $file_backup_message          = $openstack::params::file_backup, 
 
    
 ) inherits openstack::params  

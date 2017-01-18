@@ -1,8 +1,8 @@
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 <%# configuration effectue par Puppet Hiera %>	
-<% scope['servers'].each do |server| -%>
-server <%= server %>
+<% scope['chromy_servers'].each do |chromy_servers| -%>
+server <%= chromy_servers %>
 <% end -%>
 
 
@@ -20,7 +20,7 @@ rtcsync
 makestep 10 3
 
 # Allow NTP client access from local network.
-allow <%= scope['allow'] %>
+allow <%= scope['chromy_allow'] %>
 
 # Listen for commands only on localhost.
 bindcmdaddress 127.0.0.1

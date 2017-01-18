@@ -26,8 +26,8 @@ class openstack::params
 		  $user_shell                        = '/sbin/nologin'
  
       ####### CHRONY #######  
-      $allow                              =  '192.168.122.0/24'
-      $servers  = [
+      $chromy_allow                      =  '192.168.122.0/24'
+      $chromy_servers  = [
         '0.centos.pool.ntp.org iburst',
         '1.centos.pool.ntp.org iburst',
         '2.centos.pool.ntp.org iburst',
