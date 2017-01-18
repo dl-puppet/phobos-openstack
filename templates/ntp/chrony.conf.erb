@@ -1,7 +1,10 @@
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 <%# configuration effectue par Puppet Hiera %>	
-server  	<%= scope['servers'] %>
+<% scope['servers'].each do |server| -%>
+server <%= server %>
+<% end -%>
+
 
 # Ignore stratum in source selection.
 stratumweight 0
