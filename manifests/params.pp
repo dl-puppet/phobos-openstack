@@ -27,15 +27,15 @@ class openstack::params
  
       ####### CHRONY #######  
       $chromy_allow                      =  '192.168.122.0/24'
-      $chromy_servers  = [
-        '0.centos.pool.ntp.org iburst',
-        '1.centos.pool.ntp.org iburst',
-        '2.centos.pool.ntp.org iburst',
-        '3.centos.pool.ntp.org iburst',
-      ]	
+      $chromy_servers                    = [
+																	        '0.centos.pool.ntp.org iburst',
+																	        '1.centos.pool.ntp.org iburst',
+																	        '2.centos.pool.ntp.org iburst',
+																	        '3.centos.pool.ntp.org iburst',
+																	       ]	
       ####### IFCFG-ETH0 ####### 	
-			$resolv_device1                     = 'eth0'
-		  $resolv_name1                       = 'eth0'
+			$resolv_device1                    = 'eth0'
+		  $resolv_name1                      = 'eth0'
 		  $resolv_network                    = '192.168.122.0'
 		  $resolv_ipaddr                     = '192.168.122.200'
 		  $resolv_netmask                    = '255.255.255.0'
@@ -43,16 +43,16 @@ class openstack::params
 		  $resolv_broadcast                  = '192.168.122.255'
 		  
       ####### IFCFG-ETH1 #######  
-      $resolv_device2                     = 'eth1'
-      $resolv_name2                       = 'eth1'
+      $resolv_device2                    = 'eth1'
+      $resolv_name2                      = 'eth1'
       
       # /etc/sysconfig/network:
-		  $network_networking          = 'yes'
-		  #$HOSTNAME                   = 'phobos'
-		  $network_nm                  = 'no'
-		  $network_nozeroconf          = 'yes'
-		  $network_gateway             = 'wlp3s0'
-		  #$GATEWAYDEV                 = '10.40.44.192'
+		  $network_networking                = 'yes'
+		  #$HOSTNAME                         = 'phobos'
+		  $network_nm                        = 'no'
+		  $network_nozeroconf                = 'yes'
+		  $network_gateway                   = 'wlp3s0'
+		  #$GATEWAYDEV                       = '10.40.44.192'
 		
 		  # /etc/resolv.conf:
 		  $resolv_device              =  'eth0'

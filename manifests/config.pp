@@ -20,8 +20,7 @@ class openstack::config inherits openstack
   
                     "/etc/motd" :
                     content   => template("openstack/messages/motd.erb"); 
-                    
-                    )                  			        
+                                           			        
 				            ###### NETWORK #####                
                     # /etc/services: 
                     # http://www.iana.org/assignments/port-numbers

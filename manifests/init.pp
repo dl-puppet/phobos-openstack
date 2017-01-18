@@ -101,14 +101,9 @@ class openstack
   validate_bool           ($dynamic)
   validate_string         ($file_dynamic)
   validate_string         ($file_no_dynamic)
-
   validate_bool           ($issue)
   validate_string         ($file_issue)
   
-
-
-
-
   anchor { 'openstack::begin': } ->
     class { '::openstack::install': } ->
     class { '::openstack::config': } ~>
