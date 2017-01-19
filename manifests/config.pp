@@ -82,8 +82,12 @@ class openstack::config inherits openstack
                      
                     ###### MONGODB ##### 
                      "/etc/mongod.conf" :
-                     content => template("openstack/mongodb/mongod.conf.erb"),
+                     content => template("openstack/mongodb/mongod.conf.erb");
                      
+                    ###### MONGODB #####
+                    "/etc/sysconfig/memcached" :
+                    content => template("openstack/memcache/memcached.erb"),
+                    replace => "no",
               }
                                                       
 }

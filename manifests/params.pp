@@ -15,6 +15,8 @@ class openstack::params
                                           'mongodb',
                                           'rabbitmq-server',
                                           'python-memcached',
+                                          'openstack-keystone',
+                                          'httpd mod_wsgi',
                                           ]
       $package_ensure                   = 'present'
 	  

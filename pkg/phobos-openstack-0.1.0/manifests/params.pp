@@ -14,6 +14,9 @@ class openstack::params
                                           'mongodb-server',
                                           'mongodb',
                                           'rabbitmq-server',
+                                          'python-memcached',
+                                          'openstack-keystone',
+                                          'httpd mod_wsgi',
                                           ]
       $package_ensure                   = 'present'
 	  
@@ -30,6 +33,7 @@ class openstack::params
 			                                    'mariadb',
 			                                    'mongod',
                                           'rabbitmq-server',
+                                          'memcached',
                                           ]
 			$service_ensure                   = running            
 			$service_enable                   = true
