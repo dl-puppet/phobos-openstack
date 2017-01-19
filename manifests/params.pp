@@ -51,32 +51,37 @@ class openstack::params
 		  #$HOSTNAME                         = 'phobos'
 		  $network_nm                        = 'no'
 		  $network_nozeroconf                = 'yes'
-		  $network_gateway                   = 'wlp3s0'
+		  $network_gateway                   = 'eth0'
 		  #$GATEWAYDEV                       = '10.40.44.192'
 		
 		  # /etc/resolv.conf:
-		  $resolv_device              =  'eth0'
-		  $resolv_type                =  'Ethernet'
-		  $resolv_hotplug             =  'yes'
-		  $resolv_onboot              =  'yes'
-		  $resolv_controlled          =  'no'
-		  #$HWADDR                    =  <%= scope.lookupvar('::macaddress_eth0') %>,
-		  $resolv_bootproto           =  'dhcp'
-		  $resolv_peerdns             =  'no'
-		  $resolv_ipv6init            =  'no'
+		  $domain                            = 'gop.link'
+      $nameserver                        = '192.168.122.1'
+		  
+		  
+		  
+		  $resolv_device                     =  'eth0'
+		  $resolv_type                       =  'Ethernet'
+		  $resolv_hotplug                    =  'yes'
+		  $resolv_onboot                     =  'yes'
+		  $resolv_controlled                 =  'no'
+		  #$HWADDR                           =  <%= scope.lookupvar('::macaddress_eth0') %>,
+		  $resolv_bootproto                  =  'dhcp'
+		  $resolv_peerdns                    =  'no'
+		  $resolv_ipv6init                   =  'no'
 		
 		  # /etc/host.conf:
-		  $host_conf                  =  "order hosts,bind"
+		  $host_conf                         =  "order hosts,bind"
 		
 		  # /etc/hosts:
-		  $list_host                  = ''
+		  $list_host                         = ['']
 		
 		
 		  ###### CONFIG_MOTD ######    
-		  $dynamic                    = true
-		  $file_dynamic               = '/etc/profile.d/motd.sh'
-		  $file_no_dynamic            = '/etc/motd'
+		  $dynamic                           = true
+		  $file_dynamic                      = '/etc/profile.d/motd.sh'
+		  $file_no_dynamic                   = '/etc/motd'
 		  ###### CONFIG_ISSUE ######    
-		  $issue                      = true
-		  $file_issue                 = '/etc/issue.net'
+		  $issue                             = true
+		  $file_issue                        = '/etc/issue.net'
 }

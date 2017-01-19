@@ -51,8 +51,8 @@ class openstack::config inherits openstack
                     
                     # /etc/hosts: 
                     # Moyen d'assurer la résolution de noms, de donner un nom FQDN à un hôte
-                    "/etc/hosts" :
-                    content => template("openstack/network/hosts.erb");
+                    #"/etc/hosts" :
+                    #content => template("openstack/network/hosts.erb");
                      
                     # /etc/resolv.conf:
                     # Permet d'affecter les serveurs de noms. 
@@ -62,17 +62,17 @@ class openstack::config inherits openstack
 
                     # Configuration des interfaces reseaux:
                     # Configuration /etc/sysconfig/network-scripts/ifcfg-eth0:
-		                #"/etc/sysconfig/network-scripts/ifcfg-eth0" :
-		                #content => template("openstack/network/ifcfg-eth0.erb"),
+		                "/etc/sysconfig/network-scripts/ifcfg-eth0" :
+		                content => template("openstack/network/ifcfg-eth0.erb"),
 		                #replace => "no";
                     #notify  => Service['$openstack::service_name'];
                     
                     # Configuration de la route eth0:
-                    #"/etc/sysconfig/network-scripts/route-eth0" :
-                    #content => template("openstack/network/route-eth0.erb");
+                    "/etc/sysconfig/network-scripts/route-eth0" :
+                    content => template("openstack/network/route-eth0.erb");
                          
                     # Configuration /etc/sysconfig/network-scripts/ifcfg-eth1:
-                    #"/etc/sysconfig/network-scripts/ifcfg-eth1" :
-                    #content => template("openstack/network/ifcfg-eth1.erb"),  
+                    "/etc/sysconfig/network-scripts/ifcfg-eth1" :
+                    content => template("openstack/network/ifcfg-eth1.erb"),  
               }
 }

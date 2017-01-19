@@ -92,23 +92,23 @@ class openstack
   
   #####   NETWORK  ######
   # Config /etc/sysconfig/network :
-  validate_string                ($network_networking),
-  validate_string                ($network_nm),
-  validate_string                ($network_nozeroconf),
-  validate_string                ($network_gateway),
+  validate_string                ($network_networking)
+  validate_string                ($network_nm)
+  validate_string                ($network_nozeroconf)
+  validate_string                ($network_gateway)
   # /etc/sysconfig/network-scripts/ifcfg-eth0:
-  validate_string                ($resolv_device),
-  validate_string                ($resolv_type),
-  validate_string                ($resolv_hotplug),
-  validate_string                ($resolv_onboot),
-  validate_string                ($resolv_controlled),
-  validate_string                ($resolv_bootproto),
-  validate_string                ($resolv_peerdns),
-  validate_string                ($resolv_ipv6init),
+  validate_string                ($resolv_device)
+  validate_string                ($resolv_type)
+  validate_string                ($resolv_hotplug)
+  validate_string                ($resolv_onboot)
+  validate_string                ($resolv_controlled)
+  validate_string                ($resolv_bootproto)
+  validate_string                ($resolv_peerdns)
+  validate_string                ($resolv_ipv6init)
   # /etc/host.conf:
-  validate_string                ($host_conf),
+  validate_string                ($host_conf)
   # /etc/hosts:
-  validate_array                 ($list_host),
+  validate_array                 ($list_host)
   
   ###### MESSAGE ######
   validate_bool           ($dynamic)
