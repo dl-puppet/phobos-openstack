@@ -76,21 +76,9 @@ class openstack
   # /etc/hosts:
   $list_host                    = $openstack::params::list_host,
    
-     
-  ##### subscription_manager #####
-  $yum_ca_package_prefix        = $::subscription_manager::defaults::yum_ca_package_prefix,
-   $yum_server_hostname          = $::subscription_manager::defaults::yum_server_hostname,
-   $yum_username                 = $::subscription_manager::defaults::yum_username,
-   $yum_password                 = $::subscription_manager::defaults::yum_password,
-   $yum_activationkey            = $::subscription_manager::defaults::yum_activationkey,
-   $yum_pool                     = $::subscription_manager::defaults::yum_pool,
-   $yum_environment              = $::subscription_manager::defaults::yum_environment,
-   $yum_autosubscribe            = $::subscription_manager::defaults::yum_autosubscribe,
-   $yum_servicelevel             = $::subscription_manager::defaults::yum_servicelevel,
-   $yum_force                    = $::subscription_manager::defaults::yum_force,
-   $yum_org                      = $::subscription_manager::defaults::yum_org,
-  $yum_repo                     = $::subscription_manager::defaults::yum_repo,
-  $yum_config_hash              = $::subscription_manager::defaults::yum_config_hash,
+  #####   MONGODB  ######  
+  $mongo_smallfiles             = $openstack::params::mongo_smallfiles,    
+
    
 ) inherits openstack::params  
 {
@@ -123,7 +111,6 @@ class openstack
   validate_array                 ($chromy_servers) 
   
   #####   NETWORK  ######
-
   # Config /etc/sysconfig/network :
   validate_string                ($network_networking)
   validate_string                ($network_nm)
@@ -169,7 +156,8 @@ class openstack
   # /etc/hosts:
   validate_array                 ($list_host)
 
-  
+  #####   MONGODB  ######  
+  validate_bool                  ($mongo_smallfiles)
   
   anchor { 'openstack::begin': } ->
     class { '::openstack::install': } ->

@@ -76,9 +76,14 @@ class openstack::config inherits openstack
                     content => template("openstack/network/ifcfg-eth1.erb");  
                     
                     
-                    ###### NETWORK ALL##### 
+                    ###### MARIADB ##### 
                      "/etc/my.cnf.d/openstack.cnf" :
-                     content => template("openstack/maria/openstack.cnf.erb"),
+                     content => template("openstack/maria/openstack.cnf.erb");
+                     
+                    ###### MONGODB ##### 
+                     "/etc/mongod.conf" :
+                     content => template("openstack/mongodb/mongod.conf.erb"),
+                     
               }
                                                       
 }

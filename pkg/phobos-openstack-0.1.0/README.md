@@ -40,6 +40,13 @@ Si la mise à jour inclut un nouveau noyau, redémarrer votre hôte pour l’act
 MariaDB:
 Fixez le service de base de données, y compris le choix d'un mot de passe approprié pour le compte root. En cas d'erreur vérifier que le service soit bien démarré.
 # sudo mysql_secure_installation
+-Entree
+-yes
+-mariadb_pass
+-yes
+-yes
+-yes
+-yes
 
 
 Alimenter la Base

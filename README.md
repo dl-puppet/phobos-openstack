@@ -90,5 +90,18 @@ GRANT ALL PRIVILEGES ON heatdb.* TO 'heat'@'%' IDENTIFIED BY 'PWDGOP';
 
 
 
+File de messages RABBITMQ:
+Ajouter l’utilisateur openstack: (Remplacer RABBIT_PASS par un mot de passe approprié.)
+# rabbitmqctl add_user openstack RABBIT_PASS
+Creating user "openstack" ...
+...done.
+
+Permet la configuration, les accès en lecture et en écriture pour l’utilisateur openstack.
+# rabbitmqctl set_permissions openstack ".*" ".*" ".*"
+Setting permissions for user "openstack" in vhost "/" ...
+...done.
+
+
+
 
 

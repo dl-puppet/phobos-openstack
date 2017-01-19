@@ -13,6 +13,7 @@ class openstack::params
                                           'python2-PyMySQL',  
                                           'mongodb-server',
                                           'mongodb',
+                                          'rabbitmq-server',
                                           ]
       $package_ensure                   = 'present'
 	  
@@ -27,6 +28,8 @@ class openstack::params
 			$service_name                     = [
 			                                    'chronyd',
 			                                    'mariadb',
+			                                    'mongod',
+                                          'rabbitmq-server',
                                           ]
 			$service_ensure                   = running            
 			$service_enable                   = true
@@ -35,7 +38,7 @@ class openstack::params
 		
 	    ####### USER ####### 
 		  $user                              = 'openstack'
-		  $user_ensure                       = present
+		  $user_ensure                       = 'present'
 		  $user_uid                          = '2000'
 		  $user_managehome                   = false
 		  $user_shell                        = '/sbin/nologin'
@@ -99,5 +102,8 @@ class openstack::params
 		  # /etc/hosts:
 		  $list_host                         = ['']
 		  
+		  
+		  #####   MONGODB  ######  
+      $mongo_smallfiles                  = true  
 		 
 }
