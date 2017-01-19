@@ -8,4 +8,6 @@ class openstack::install inherits openstack
         
 	    package { $package_name : } 
   }  
+
+
 }

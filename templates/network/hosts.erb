@@ -1,7 +1,8 @@
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1          localhost localhost.localdomain localhost6 localhost6.localdomain6
 
-<%= scope.lookupvar('::ipaddress_eth0') %> 	<%= scope.lookupvar('::hostname') %>.<%= scope.lookupvar('::domain') %>  <%= scope.lookupvar('::hostname') %>
+<%= scope['::ipaddress_eth0'] %> <%= scope['::fqdn'] %> <%= scope['::hostname'] %>
 
-
-<%= scope.lookupvar('::list_host') %>
+<% scope['list_host'].each do |list_host| -%>
+<%= list_host %>
+<% end -%>
