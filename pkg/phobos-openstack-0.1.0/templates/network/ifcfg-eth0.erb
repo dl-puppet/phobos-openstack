@@ -1,0 +1,22 @@
+DEVICE=<%= scope['ifcfg_device'] %>
+TYPE=<%= scope['ifcfg_type'] %>
+NAME=<%= scope['ifcfg_name'] %>
+HOTPLUG=<%= scope['ifcfg_hotplug'] %>
+ONBOOT=<%= scope['ifcfg_onboot'] %>
+NM_CONTROLLED=<%= scope['ifcfg_controlled'] %>
+#UUID=828de8b1-be2e-4ab2-ab31-3e57badc3060
+HWADDR=<%= scope['::macaddress_eth0'] %>
+IPV6INIT=<%= scope['ifcfg_ipv6init'] %>
+BOOTPROTO=<%= scope['ifcfg_bootproto'] %>
+DEFROUTE=<%= scope['ifcfg_defroute'] %>
+PEERDNS=<%= scope['ifcfg_peerdns'] %>
+PEERNTP=<%= scope['ifcfg_peerntp'] %>
+PEERROUTES=<%= scope['ifcfg_peerroutes'] %>
+IPV4_FAILURE_FATAL=<%= scope['ifcfg_ip_failure'] %>
+NETWORK=<%= scope['ifcfg_network'] %>
+IPADDR=<%= scope['ifcfg_ipaddr'] %>
+NETMASK=<%= scope['ifcfg_netmask'] %>
+GATEWAY=<%= scope['ifcfg_gateway'] %>
+BROADCAST=<%= scope['ifcfg_broadcast'] %>
+NOZEROCONF=<%= scope['ifcfg_nozeroconf'] %>
+#ETHTOOL_OPTS=<%= scope['ifcfg_ethtool_opts'] %>

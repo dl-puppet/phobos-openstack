@@ -1,0 +1,22 @@
+{
+  "name": "phobos-openstack",
+  "version": "0.1.0",
+  "author": "david levray",
+  "summary": "",
+  "license": "",
+  "source": "",
+  "project_page": "https://github.com/dl-puppet/phobos-openstack",
+  "issues_url": null,
+  "operatingsystem_support": [
+  
+  ],
+  "requirements": [
+    "puppetlabs-stdlib"
+  ],
+  "tags": [
+  
+  ],
+  "dependencies": [
+  
+  ]
+}

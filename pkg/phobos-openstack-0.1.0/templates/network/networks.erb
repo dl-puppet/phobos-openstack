@@ -1,0 +1,7 @@
+#/etc/networks
+default 				0.0.0.0
+loopback 				127.0.0.0
+link-local 				169.254.0.0
+<% scope['list_networks'].each do |list_networks| -%>
+<%= list_networks %>
+<% end -%>
