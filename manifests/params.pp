@@ -12,7 +12,7 @@ class openstack::params
                                           'mariadb-server',
                                           'python2-PyMySQL',  
                                           'mongodb-server',
-                                          'mongodb',
+                                          'mongodb
                                           ]
       $package_ensure                   = 'present'
 	  
