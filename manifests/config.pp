@@ -74,7 +74,12 @@ class openstack::config inherits openstack
                          
                     # Configuration /etc/sysconfig/network-scripts/ifcfg-eth1:
                     "/etc/sysconfig/network-scripts/ifcfg-eth1" :
-                    content => template("openstack/network/ifcfg-eth1.erb"),  
+                    content => template("openstack/network/ifcfg-eth1.erb");  
+                    
+                    
+                    ###### NETWORK ALL##### 
+                     "/etc/my.cnf.d/openstack.cnf" :
+                     content => template("openstack/maria/openstack.cnf.erb"),
               }
                                                       
 }

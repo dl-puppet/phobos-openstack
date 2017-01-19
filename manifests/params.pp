@@ -3,7 +3,17 @@ class openstack::params
   
       ##### PACKAGES #####
       $package_manage                   = true
-      $package_name                     = ['chrony,subscription-manager']
+      $package_name                     = [
+                                          'chrony',
+                                          'subscription-manager',
+                                          'python-openstackclient',
+                                          'openstack-selinux',
+                                          'mariadb',
+                                          'mariadb-server',
+                                          'python2-PyMySQL',  
+                                          'mongodb-server',
+                                          'mongodb',
+                                          ]
       $package_ensure                   = 'present'
 	  
 	    ##### CONFIG_FILES #####   
@@ -14,7 +24,10 @@ class openstack::params
 		  $file_owner                       = '0'
 
       ######### SERVICES ########
-			$service_name                     = 'chronyd,goferd'
+			$service_name                     = [
+			                                    'chronyd',
+			                                    'mariadb',
+                                          ]
 			$service_ensure                   = running            
 			$service_enable                   = true
 			$service_hasstatus                = true
@@ -86,37 +99,5 @@ class openstack::params
 		  # /etc/hosts:
 		  $list_host                         = ['']
 		  
-		   
-      ##### YUM_SUBSCRIPTION_MANAGER #####		  
-		  $yum_server_hostname                   = 'subscription.rhn.redhat.com'
-	    $yum_config_hash                   = {
-																		      'server_insecure'               => false,
-																		      'server_prefix'                 => '/subscription',
-																		      'server_port'                   => 443,
-																		      'server_ssl_verify_depth'       => 3,
-																		      'server_proxy_hostname'         => '',
-																		      'server_proxy_port'             => '',
-																		      'server_proxy_user'             => '',
-																		      'server_proxy_password'         => '',
-																		      'rhsm_baseurl'                  => 'https://cdn.redhat.com',
-																		      'rhsm_ca_cert_dir'              => '/etc/rhsm/ca',
-																		      'rhsm_repo_ca_cert'             => '%(ca_cert_dir)s/redhat-uep.pem',
-																		      'rhsm_productcertdir'           => '/etc/pki/product',
-																		      'rhsm_entitlementcertdir'       => '/etc/pki/entitlement',
-																		      'rhsm_consumercertdir'          => '/etc/pki/consumer',
-																		      'rhsm_manage_repos'             => true,
-																		      'rhsmcertd_certcheckinterval'   => 240,
-																		      'rhsmcertd_autoattachinterval'  => 1440,
-	                                       }
-	    $yum_username                      = 'd.levray@groupeonepoint.com'
-	    $yum_password                      = ''
-	    $yum_activationkey                 = undef
-	    $yum_pool                          = undef
-	    $yum_servicelevel                  = undef
-	    $yum_environment                   = undef # cannot use with an activation key!
-	    $yum_autosubscribe                 = false
-	    $yum_force                         = false
-	    $yum_org                           = 'Default_Organization'
-	    $yum_repo                          = undef
-	    $yum_ca_package_prefix             = 'katello-ca-consumer-'	
+		 
 }

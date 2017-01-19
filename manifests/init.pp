@@ -107,7 +107,7 @@ class openstack
   #validate_string               ($file_owner)   
   
   ###### SERVICE ######
-  validate_string                ($service_name)
+  validate_array                 ($service_name)
   validate_string                ($service_ensure)
   validate_bool                  ($service_enable)
 
