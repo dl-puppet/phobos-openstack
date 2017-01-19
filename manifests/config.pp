@@ -21,14 +21,12 @@ class openstack::config inherits openstack
   
                     "/etc/motd" :
                     content => template("openstack/messages/motd.erb"); 
-                    
+ 
                     "/etc/motd.sh" :
                     content => template("openstack/messages/motd.sh.erb"); 
                     
                     "/etc/profile.d/default-profile.sh" :
                     content => template("openstack/messages/default-profile.sh"); 
- 
- 
                                            			        
 				            ###### NETWORK ALL#####                
                     # http://www.iana.org/assignments/port-numbers
@@ -57,8 +55,9 @@ class openstack::config inherits openstack
                     # Moyen d'assurer la résolution de noms, de donner un nom FQDN à un hôte
                     "/etc/hosts" :
                     content => template("openstack/network/hosts.erb");
-                     
+
                     # Permet d'affecter les serveurs de noms. ATTENTION !!! Il peut etre configurer via DHCP
+
                     "/etc/resolv.conf" :
                     content => template("openstack/network/resolv.erb");
 
