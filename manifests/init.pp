@@ -79,7 +79,103 @@ class openstack
   #####   MONGODB  ######  
   $mongo_smallfiles             = $openstack::params::mongo_smallfiles,    
 
-   
+  #####   MEMCAHED  ###### 
+  $memcached_interface          = $openstack::params::memcached_interface,
+
+  #####   KEYSTONE  ###### 
+  $keystone_debug          = $openstack::params::keystone_debug,
+  $keystone_log_dir        = $openstack::params::keystone_log_dir,
+  $keystone_verbose        = $openstack::params::keystone_verbose,
+  $keystone_token          = $openstack::params::keystone_token,
+  $keystone_connection     = $openstack::params::keystone_connection,
+  $keystone_retry_interval = $openstack::params::keystone_retry_interval,
+  $keystone_max_retry      = $openstack::params::keystone_max_retry,
+  $keystone_server_memcache= $openstack::params::keystone_server_memcache,
+  $keystone_token_provider = $openstack::params::keystone_token_provider,
+  $keystone_token_driver   = $openstack::params::keystone_token_driver,
+  $keystone_revoke_driver  = $openstack::params::keystone_revoke_driver,
+  $keystone_token_auth     = $openstack::params::keystone_token_auth,
+  
+  
+  #####   GLANCE  ######
+  
+  ### configuration /etc/glance/glance-api.conf:
+  ###[DEFAULT]
+	#notification_driver = noop
+	#notification_driver = messaging
+	##verbose = True
+	#debug = False
+	#log_file = /var/log/glance/api.log
+	#workers = 2
+	#known_stores = glance.store.filesystem.Store
+	#bind_host = 0.0.0.0
+	#bind_port = 9292
+	#registry_host = 127.0.0.1
+	#registry_port = 9191
+	#registry_client_protocol = http
+	#delayed_delete = False
+	#scrub_time = 43200
+	#scrubber_datadir = /var/lib/glance/scrubber
+	#image_cache_dir = /var/lib/glance/image-cache/
+  ###[database]
+  $glance_connection       = $openstack::params::glance_connection,
+  $glance_max_retries      = $openstack::params::glance_max_retries,
+  $glance_retry_interval   = $openstack::params::glance_retry_interval,
+  $glance_backend          = $openstack::params::glance_backend,
+  ###[keystone_authtoken]
+  $glance_auth_uri         = $openstack::params::glance_auth_uri, 
+  $glance_auth_url         = $openstack::params::glance_auth_url, 
+  $glance_memcached_servers = $openstack::params::glance_memcached_servers,
+  $glance_auth_type        = $openstack::params::glance_auth_type,
+  $glance_project_domain_name = $openstack::params::glance_project_domain_name,
+  $glance_user_domain_name = $openstack::params::glance_user_domain_name,
+  $glance_project_name     = $openstack::params::glance_project_name,
+  $glance_username         = $openstack::params::glance_username,
+  $glance_password         = $openstack::params::glance_password,
+  ###[paste_deploy]
+  $glance_flavor           = $openstack::params::glance_flavor,
+  ###[glance_store]
+  $glance_stores           = $openstack::params::glance_stores,
+  $glance_default_store    = $openstack::params::glance_default_store,
+  $glance_filesystem_store_datadir = $openstack::params::glance_filesystem_store_datadir,
+  ###[oslo_messaging_rabbit]
+  $glance_rabbit_host      = $openstack::params::glance_rabbit_host,
+  $glance_rabbit_port      = $openstack::params::glance_rabbit_port,
+  $glance_rabbit_userid    = $openstack::params::glance_rabbit_userid,
+  $glance_rabbit_password  = $openstack::params::glance_rabbit_password,
+  $glance_rabbit_retry_interval = $openstack::params::glance_rabbit_retry_interval, 
+  $glance_rabbit_retry_backoff  = $openstack::params::glance_rabbit_retry_backoff, 
+  $glance_rabbit_max_retries    = $openstack::params::glance_rabbit_max_retries,
+  $glance_rabbit_durable_queues = $openstack::params::glance_rabbit_durable_queues,
+  $glance_rabbit_ha_queues      = $openstack::params::glance_rabbit_ha_queues,
+  
+  ###Configuration /etc/glance/glance-registry.conf:
+  ###[default]
+  $glance_registry_debug          = $openstack::params::glance_registry_debug,
+  $glance_registry_verbose        = $openstack::params::glance_registry_verbose,
+  $glance_registry_log_file       = $openstack::params::glance_registry_log_file,
+  $glance_registry_bind_host      = $openstack::params::glance_registry_bind_host,
+  $glance_registry_bind_port      = $openstack::params::glance_registry_bind_port,
+  $glance_registry_workers        = $openstack::params::glance_registry_workers,
+  ###[DATABASE]
+  $glance_registry_connection     = $openstack::params::glance_registry_connection,
+  $glance_registry_retry_interval = $openstack::params::glance_registry_retry_interval,
+  $glance_registry_max_retries    = $openstack::params::glance_registry_max_retries,
+  $glance_registry_backend        = $openstack::params::glance_registry_backend,
+  ### [keystone_authtoken]
+  $glance_registry_auth_uri       = $openstack::params::glance_registry_auth_uri,
+  $glance_registry_auth_url       = $openstack::params::glance_registry_auth_url,
+  $glance_registry_memcached_servers   = $openstack::params::glance_registry_memcached_servers,
+  $glance_registry_auth_type           = $openstack::params::glance_registry_auth_type,
+  $glance_registry_project_domain_name = $openstack::params::glance_registry_project_domain_name,
+  $glance_registry_user_domain_name    = $openstack::params::glance_registry_user_domain_name,
+  $glance_registry_project_name   = $openstack::params::glance_registry_project_name,
+  $glance_registry_username       = $openstack::params::glance_registry_password,
+  $glance_registry_password       = $openstack::params::glance_registry_password,
+  ###[paste_deploy]
+  $glance_registry_flavor         = $openstack::params::glance_registry_flavor,
+  
+  
 ) inherits openstack::params  
 {
   ###### PACKAGE ######
@@ -159,6 +255,77 @@ class openstack
   #####   MONGODB  ######  
   validate_bool                  ($mongo_smallfiles)
   
+  #####   MEMCAHED  ###### 
+  validate_string                ($memcached_interface)
+  
+  #####   KEYSTONE  ###### 
+  validate_bool                  ($keystone_debug) 
+  validate_string                ($keystone_log_dir) 
+  validate_string                ($keystone_verbose) 
+  validate_string                ($keystone_token) 
+  validate_string                ($keystone_connection) 
+  validate_string                ($keystone_retry_interval)  
+  validate_string                ($keystone_max_retry)
+  validate_string                ($keystone_server_memcache)
+  validate_string                ($keystone_token_provider)  
+  validate_string                ($keystone_token_driver)
+  validate_string                ($keystone_revoke_driver)
+  validate_string                ($keystone_token_auth)
+
+  #####   GLANCE  ######
+  validate_string                ($glance_connection)
+  validate_string                ($glance_max_retries)
+  validate_string                ($glance_retry_interval)
+  validate_string                ($glance_backend)
+  validate_string                ($glance_auth_uri)
+  validate_string                ($glance_auth_url)
+  validate_string                ($glance_memcached_servers)
+  validate_string                ($glance_auth_type)
+  validate_string                ($glance_project_domain_name)
+  validate_string                ($glance_user_domain_name)
+  validate_string                ($glance_project_name)
+  validate_string                ($glance_username)
+  validate_string                ($glance_password)
+  validate_string                ($glance_flavor)
+  validate_string                ($glance_stores)
+  validate_string                ($glance_default_store)
+  validate_string                ($glance_filesystem_store_datadir)
+  validate_string                ($glance_rabbit_host)
+  validate_string                ($glance_rabbit_port)
+  validate_string                ($glance_rabbit_userid)
+  validate_string                ($glance_rabbit_password)
+  validate_string                ($glance_rabbit_retry_interval)
+  validate_string                ($glance_rabbit_retry_backoff)
+  validate_string                ($glance_rabbit_max_retries)
+  validate_bool                  ($glance_rabbit_durable_queues)
+  validate_bool                  ($glance_rabbit_ha_queues) 
+  ###Configuration /etc/glance/glance-registry.conf:
+  ###[default]
+  validate_bool                  ($glance_registry_debug)
+  validate_string                ($glance_registry_verbose)
+  validate_string                ($glance_registry_log_file)
+  validate_string                ($glance_registry_bind_host)
+  validate_string                ($glance_registry_bind_port)
+  validate_string                ($glance_registry_workers)
+  ###[DATABASE]
+  validate_string                ($glance_registry_connection)
+  validate_string                ($glance_registry_retry_interval)
+  validate_string                ($glance_registry_max_retries)
+  validate_string                ($glance_registry_backend)
+  ### [keystone_authtoken]
+  validate_string                ($glance_registry_auth_uri)
+  validate_string                ($glance_registry_auth_url)
+  validate_string                ($glance_registry_memcached_servers)
+  validate_string                ($glance_registry_auth_type)
+  validate_string                ($glance_registry_project_domain_name)
+  validate_string                ($glance_registry_user_domain_name)
+  validate_string                ($glance_registry_project_name)
+  validate_string                ($glance_registry_username)
+  validate_string                ($glance_registry_password)
+  ###[paste_deploy]
+  validate_string                ($glance_registry_flavor)  
+    
+    
   anchor { 'openstack::begin': } ->
     class { '::openstack::install': } ->
     class { '::openstack::config': } ~>

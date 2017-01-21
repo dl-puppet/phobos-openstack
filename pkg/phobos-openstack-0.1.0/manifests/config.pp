@@ -84,10 +84,29 @@ class openstack::config inherits openstack
                      "/etc/mongod.conf" :
                      content => template("openstack/mongodb/mongod.conf.erb");
                      
-                    ###### MONGODB #####
+                    ###### MEMCACHED #####
                     "/etc/sysconfig/memcached" :
-                    content => template("openstack/memcache/memcached.erb"),
-                    replace => "no",
-              }
-                                                      
+                    content => template("openstack/memcache/memcached.erb");
+                    
+                    ###### KEYSTONE #####
+                    "/etc/keystone/keystone.conf" :
+                    content => template("openstack/keystone/keystone.conf.erb");
+                    
+                    "/etc/httpd/conf/httpd.conf" :
+                    content => template("openstack/keystone/httpd.conf.erb");
+                    
+                    "/etc/httpd/conf.d/wsgi-keystone.conf":
+                    ensure => 'link',
+                    target => '/usr/share/keystone/wsgi-keystone.conf';
+                    
+                    "/etc/keystone/keystone-paste.ini" :
+                    content => template("openstack/keystone/keystone-paste.ini.erb");       
+                    
+                    ###### GLANCE #####      
+                    "/etc/glance/glance-api.conf" :
+                    content => template("openstack/glance/glance-api.conf.erb");  
+     
+                    "/etc/glance/glance-registry.conf" :
+                    content => template("openstack/glance/glance-registry.conf.erb"),   
+              }                                                     
 }
