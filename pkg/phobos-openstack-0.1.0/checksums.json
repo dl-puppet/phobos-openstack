@@ -1,9 +1,9 @@
 {
-  "README.md": "5b1a42e7888a1e6b995d62e24d4bca47",
-  "manifests/config.pp": "3832199419f9f5a5d3d240f0735789ec",
+  "README.md": "a4d5a2d8a32a4fd6ecfbc8bc4faaae3a",
+  "manifests/config.pp": "f757b6663e59acd55689008b08fb5086",
   "manifests/init.pp": "cf3d425a5e77cb424418ce0c723b3f0c",
   "manifests/install.pp": "accb0e0c1ac6970e6398b113b4047533",
-  "manifests/params.pp": "fca650972c357e8d8f74357d79015936",
+  "manifests/params.pp": "286c16a16cd325e3293d8bd7a0ddfa2c",
   "manifests/service.pp": "e04d98411a98633d1153fb0657d3f0b5",
   "manifests/user.pp": "5be5a99fce68649af8f3af4224f438fb",
   "metadata.json": "fa0c0f8871ab0e1539e629f44548ae71",

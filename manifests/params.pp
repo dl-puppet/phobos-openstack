@@ -21,6 +21,11 @@ class openstack::params
                                           'httpd',
                                           'mod_wsgi',
                                           'openstack-glance',
+                                          'openstack-nova-api',
+                                          'openstack-nova-conductor',
+                                          'openstack-nova-console',
+                                          'openstack-nova-novncproxy',
+                                          'openstack-nova-scheduler',
                                           ]
       $package_ensure                   = 'present'
 	  
@@ -187,4 +192,45 @@ class openstack::params
 		  $glance_registry_password          = 'PWDGOP'
 		  ###[paste_deploy]
 		  $glance_registry_flavor            = 'keystone'
+		  
+
+      #####  NOVA  ######
+		  ###[DEFAULT] 
+		  $nova_enabled_apis                  = ''  
+		  $nova_rpc_backend                   = ''
+		  $nova_auth_strategy                 = ''
+		  $nova_my_ip                         = ''
+		  $nova_use_neutron                   = ''
+		  $nova_firewall_driver               = ''
+		  ###[api_database]
+		  $nova_api_connection                = ''  
+		  $nova_api_retry_interval            = ''
+		  $nova_api_max_retries               = ''
+		  ###[api_database]
+		  $nova_database_connection           = ''
+		  $nova_database_max_retries          = ''
+		  $nova_database_retry_interval       = ''
+		  $nova_database_backend              = ''
+		  ###[oslo_messaging_rabbit]
+		  $nova_rabbit_host                   = ''
+		  $nova_rabbit_userid                 = ''
+		  $nova_rabbit_password               = ''
+		  ###[keystone_authtoken]
+		  $nova_keystone_auth_uri             = ''
+		  $nova_keystone_auth_url             = ''
+		  $nova_keystone_memcached_servers    = ''
+		  $nova_keystone_auth_type            = ''
+		  $nova_keystone_project_domain_name  = ''
+		  $nova_keystone_user_domain_name     = ''
+		  $nova_keystone_project_name         = ''
+		  $nova_keystone_username             = ''
+		  $nova_keystone_password             = ''
+		  ###[vnc]
+		  $nova_vncserver_listen              = ''
+		  $nova_vncserver_proxyclient_address = ''
+		  ###[spice]
+		  ###[glance]
+		  $nova_glance_api_servers            = ''
+		  ###[oslo_concurrency]
+		  $nova_oslo_concurrency_lock_path    = ''
 }

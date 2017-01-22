@@ -107,6 +107,10 @@ class openstack::config inherits openstack
                     content => template("openstack/glance/glance-api.conf.erb");  
      
                     "/etc/glance/glance-registry.conf" :
-                    content => template("openstack/glance/glance-registry.conf.erb"),   
+                    content => template("openstack/glance/glance-registry.conf.erb");  
+                       
+                    ###### NOVA ##### 
+                    "/etc/nova/nova.conf" :
+                    content => template("openstack/nova/nova.conf.erb"),
               }                                                     
 }

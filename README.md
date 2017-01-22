@@ -199,6 +199,17 @@ $ openstack --os-auth-url http://controller:35357/v3 --os-project-domain-name de
 
 
 
+GLANCE:
+Peupler la base de données de service de l'image:
+# su -s /bin/sh -c "glance-manage db_sync" glance
+
+
+
+
+
+
+
+
 
 
 

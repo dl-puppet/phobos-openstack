@@ -21,6 +21,11 @@ class openstack::params
                                           'httpd',
                                           'mod_wsgi',
                                           'openstack-glance',
+                                          'openstack-nova-api',
+                                          'openstack-nova-conductor',
+                                          'openstack-nova-console',
+                                          'openstack-nova-novncproxy',
+                                          'openstack-nova-scheduler',
                                           ]
       $package_ensure                   = 'present'
 	  
