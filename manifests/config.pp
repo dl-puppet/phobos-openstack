@@ -11,12 +11,12 @@ class openstack::config inherits openstack
                 file {
 
                     ###### CHRONY #####
-				            "/etc/chrony.conf" :
-				            content => template("openstack/ntp/chrony.conf.erb");   
+		    "/etc/chrony.conf" :
+		    content => template("openstack/ntp/chrony.conf.erb");   
 
 				      			        
-	                  ###### MESSAGES #####
-	                  "/etc/issue.net" :
+	            ###### MESSAGES #####
+	            "/etc/issue.net" :
                     content => template("openstack/messages/issue.net.erb");   
   
                     "/etc/motd" :
@@ -28,7 +28,7 @@ class openstack::config inherits openstack
                     "/etc/profile.d/default-profile.sh" :
                     content => template("openstack/messages/default-profile.sh"); 
                                            			        
-				            ###### NETWORK ALL#####                
+		    ###### NETWORK ALL#####                
                     # http://www.iana.org/assignments/port-numbers
                     # port (entre 0 et 1023) sont réservés pour les applications « standards 
                     # port pour les applications développées par les utilisateurs (1024 à 65535).
@@ -62,9 +62,9 @@ class openstack::config inherits openstack
                     content => template("openstack/network/resolv.erb");
 
                     # Configuration des interfaces reseaux:
-		                "/etc/sysconfig/network-scripts/ifcfg-eth0" :
-		                content => template("openstack/network/ifcfg-eth0.erb");
-		                #replace => "no";
+		    "/etc/sysconfig/network-scripts/ifcfg-eth0" :
+		    content => template("openstack/network/ifcfg-eth0.erb");
+		    #replace => "no";
                     #notify  => Service['$openstack::service_name'];
                     
                     # Configuration de la route eth0:
@@ -111,6 +111,17 @@ class openstack::config inherits openstack
                        
                     ###### NOVA ##### 
                     "/etc/nova/nova.conf" :
-                    content => template("openstack/nova/nova.conf.erb"),
+                    content => template("openstack/nova/nova.conf.erb");
+                    
+                    ###### NEUTRON #####                   
+                    '/etc/neutron/neutron.conf' :
+                    content => template("openstack/neutron/neutron.conf.erb");                    
+                    
+                    '/etc/neutron/plugins/ml2/ml2_conf.ini' :
+                    content => template("openstack/neutron/ml2_conf.ini.erb");
+                    
+                    '/etc/neutron/plugins/ml2/linuxbridge_agent.ini' :
+                    content => template("openstack/neutron/linuxbridge_agent.ini.erb"),
+                    
               }                                                     
 }

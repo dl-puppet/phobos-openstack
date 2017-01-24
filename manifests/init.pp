@@ -183,6 +183,7 @@ class openstack
   $nova_my_ip         			= $openstack::params::nova_my_ip,
   $nova_use_neutron         		= $openstack::params::nova_use_neutron,
   $nova_firewall_driver         	= $openstack::params::nova_firewall_driver,
+  $nova_rabbit_transport_url		= $openstack::params::nova_rabbit_transport_url, 
   ###[api_database]
   $nova_api_connection         		= $openstack::params::nova_api_connection,  
   $nova_api_retry_interval         	= $openstack::params::nova_api_retry_interval,
@@ -214,9 +215,12 @@ class openstack
   $nova_glance_api_servers         	= $openstack::params::nova_glance_api_servers,
   ###[oslo_concurrency]
   $nova_oslo_concurrency_lock         	= $openstack::params::nova_oslo_concurrency_lock,
+
+
+  #####  NEUTRON  ######  
+
   
-  
-    
+   
 ) inherits openstack::params  
 {
   ###### "PACKAGE" ######
@@ -373,8 +377,9 @@ class openstack
   validate_string                	($nova_rpc_backend)
   validate_string                	($nova_auth_strategy)
   validate_string                	($nova_my_ip)
-  validate_string                	($nova_use_neutron)
+  validate_bool	                	($nova_use_neutron)
   validate_string                	($nova_firewall_driver)
+  validate_string                       ($nova_rabbit_transport_url)
   ###[api_database]
   validate_string                	($nova_api_connection)  
   validate_string                	($nova_api_retry_interval)
@@ -388,6 +393,7 @@ class openstack
   validate_string                	($nova_rabbit_host)
   validate_string                	($nova_rabbit_userid)
   validate_string                	($nova_rabbit_password)
+  #backend                           	= sqlalchemy ???
   ###[keystone_authtoken]
   validate_string                	($nova_keystone_auth_uri)
   validate_string                	($nova_keystone_auth_url)

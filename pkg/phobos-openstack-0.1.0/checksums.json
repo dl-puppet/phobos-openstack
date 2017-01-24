@@ -1,9 +1,9 @@
 {
-  "README.md": "a4d5a2d8a32a4fd6ecfbc8bc4faaae3a",
-  "manifests/config.pp": "f757b6663e59acd55689008b08fb5086",
-  "manifests/init.pp": "cf3d425a5e77cb424418ce0c723b3f0c",
+  "README.md": "fb521780354f1baab231d9c6bfbaa5e8",
+  "manifests/config.pp": "db4e0954056b6c0644a9bf63410d6b59",
+  "manifests/init.pp": "6f21ea10e72aae501f33f144b16e3f88",
   "manifests/install.pp": "accb0e0c1ac6970e6398b113b4047533",
-  "manifests/params.pp": "286c16a16cd325e3293d8bd7a0ddfa2c",
+  "manifests/params.pp": "67312aae95f32a9d7b6051b7b966dc8a",
   "manifests/service.pp": "e04d98411a98633d1153fb0657d3f0b5",
   "manifests/user.pp": "5be5a99fce68649af8f3af4224f438fb",
   "metadata.json": "fa0c0f8871ab0e1539e629f44548ae71",
@@ -18,7 +18,7 @@
   "templates/memcache/memcached.erb": "a4fc97cf5d7c45cc595794f5f9737ee1",
   "templates/messages/default-profile.sh": "cb3d2dd596a51232e2604d392d701f6c",
   "templates/messages/issue.net.erb": "8df916688336e8e64da6cee713d9b42b",
-  "templates/messages/motd.erb": "bda357bcc105ffca30b5285166683f24",
+  "templates/messages/motd.erb": "4e02bcd3f6414785364b228e539cf4cd",
   "templates/messages/motd.sh.erb": "416cfe598ae75965f1befc3f3cfce6e7",
   "templates/mongodb/mongod.conf.erb": "9faddbe136626d7e5d951e7edd9dd4f7",
   "templates/network/host.conf.erb": "e3c57470dcc0d950806d33f0dba1205e",
@@ -31,5 +31,6 @@
   "templates/network/route-eth0.erb": "227e6e5b425cf53cfd5c5ff2c07a1421",
   "templates/network/services.erb": "8e0abe8547f0411554a35b97447b2fbd",
   "templates/network/sysctl.erb": "2a96f43c1ba38757eb5bdeb34a982a61",
+  "templates/nova/nova.conf.erb": "613157ee8f75216a13425b9d6ecd41df",
   "templates/ntp/chrony.conf.erb": "21232ab796d089442cfcd8be95771fb7"
 }

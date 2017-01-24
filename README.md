@@ -22,7 +22,7 @@ Activer le dépôt OpenStack
 
 Sur CentOS :
 Sur CentOS, le dépôt extras contient le RPM qui active le dépôt OpenStack. CentOS inclut par défaut le dépôt extras, vous pouvez donc simplement installer le package pour activer le dépôt OpenStack.
-# yum install centos-release-openstack-mitaka
+# yum install centos-release-openstack-newton
 
 Sur RHEL :
 Sur RHEL, télécharger et installer le dépôt RDO RPM pour activer le dépôt OpenStack.
