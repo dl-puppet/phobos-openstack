@@ -294,5 +294,43 @@ class openstack::params
   ###[securitygroup]
   $neutron_securitygroup_enable_ipset= true #True avec Majuscule
 
+  ### /etc/neutron/plugins/ml2/linuxbridge_agent.ini:
+  ###[linux_bridge]
+  $neutron_agent_physical_interface_mappings= 'provider:eth0'  #PROVIDER_INTERFACE_NAME!!!!!!!!!!!!!!!!!!!!!!!!!
+  ###[vxlan]
+  $neutron_agent_enable_vxlan        = true
+  $neutron_agent_vxlan_local_ip      = '192.168.122.200'       #OVERLAY_INTERFACE_IP_ADDRESS !!!!!!!!!!!!!!!!
+  $neutron_agent_vxlan_l2_population = true
+  ###[securitygroup]
+  $neutron_agent_enable_security_group= true
+  $neutron_agent_firewall_driver     = 'neutron.agent.linux.iptables_firewall.IptablesFirewallDriver'
 	
+	### /etc/neutron/l3_agent.ini:
+	###[DEFAULT]
+	$neutron_l3agent_interface_driver  = 'neutron.agent.linux.interface.BridgeInterfaceDriver'
+	
+	### /etc/neutron/dhcp_agent.ini:
+	###[DEFAULT]
+	$neutron_dhcp_interface_driver     = 'neutron.agent.linux.interface.BridgeInterfaceDriver'
+	$neutron_dhcp_driver               = 'neutron.agent.linux.dhcp.Dnsmasq'
+	$neutron_dhcp_enable_isolated_metadata= true  #True avec Majuscule
+	
+	###/etc/neutron/metadata_agent.ini
+	###[DEFAULT]
+	$metadata_nova_metadata_ip         = 'controller1'
+	$metadata_proxy_shared_secret      = 'METADATA_SECRET'
+	
+	### /etc/nova/nova.conf
+  $nova_neutron_url                  = 'http://controller1:9696'
+  $nova_neutron_auth_url             = 'http://controller1:35357'
+  $nova_neutron_auth_type            = 'password'
+  $nova_neutron_project_domain_name  = 'Default'
+  $nova_neutron_user_domain_name     = 'Default'
+  $nova_neutron_region_name          = 'onepoint'
+  $nova_neutron_project_name         = 'service'
+  $nova_neutron_username             = 'neutron'        
+  $nova_neutron_password             = 'PWDGOP'
+  $nova_neutron_service_metadata_proxy= true
+  $nova_neutron_metadata_proxy_shared_secret= 'METADATA_SECRET'
+
 }

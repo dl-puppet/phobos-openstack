@@ -121,7 +121,17 @@ class openstack::config inherits openstack
                     content => template("openstack/neutron/ml2_conf.ini.erb");
                     
                     '/etc/neutron/plugins/ml2/linuxbridge_agent.ini' :
-                    content => template("openstack/neutron/linuxbridge_agent.ini.erb"),
+                    content => template("openstack/neutron/linuxbridge_agent.ini.erb");
+                    
+                    '/etc/neutron/l3_agent.ini' :
+                    content => template("openstack/neutron/l3_agent.ini.erb");
+                    
+                    '/etc/neutron/metadata_agent.ini' :
+                    content => template("openstack/neutron/metadata_agent.ini.erb");
+                    
+                    "/etc/neutron/plugin.ini":
+                    ensure => 'link',
+                    target => '/etc/neutron/plugins/ml2/ml2_conf.ini';
                     
               }                                                     
 }

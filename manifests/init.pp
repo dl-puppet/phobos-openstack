@@ -214,10 +214,94 @@ class openstack
   ###[glance]
   $nova_glance_api_servers         	= $openstack::params::nova_glance_api_servers,
   ###[oslo_concurrency]
-  $nova_oslo_concurrency_lock         	= $openstack::params::nova_oslo_concurrency_lock,
+  $nova_oslo_concurrency_lock_path          	= $openstack::params::nova_oslo_concurrency_lock_path ,
 
 
   #####  NEUTRON  ######  
+  ###/etc/neutron/neutron.conf
+  ###DEFAULT
+$neutron_db_connection             = $openstack::params::neutron_db_connection,
+$neutron_core_plugin               = $openstack::params::neutron_core_plugin,
+$neutron_service_plugins           = $openstack::params::neutron_service_plugins,
+$neutron_allow_overlapping_ips     = $openstack::params::neutron_allow_overlapping_ips,
+$neutron_rabbit_transport_url      = $openstack::params::neutron_rabbit_transport_url,
+$neutron_auth_strategy             = $openstack::params::neutron_auth_strategy,
+$neutron_notify_nova_on_port_status_changes= $openstack::params::neutron_notify_nova_on_port_status_changes,
+$neutron_notify_nova_on_port_data_changes  = $openstack::params::neutron_notify_nova_on_port_data_changes,
+  ###[keystone_authtoken]
+$neutron_keystone_auth_uri         = $openstack::params::neutron_keystone_auth_uri,
+$neutron_keystone_auth_url         = $openstack::params::neutron_keystone_auth_url,
+$neutron_keystone_memcached_servers= $openstack::params::neutron_keystone_memcached_servers,
+$neutron_keystone_auth_type        = $openstack::params::neutron_keystone_auth_type,
+$neutron_keystone_project_domain_name= $openstack::params::neutron_keystone_project_domain_name,
+$neutron_keystone_user_domain_name = $openstack::params::neutron_keystone_user_domain_name,
+$neutron_keystone_project_name     = $openstack::params::neutron_keystone_project_name,
+$neutron_keystone_username         = $openstack::params::neutron_keystone_username,
+$neutron_keystone_password         = $openstack::params::neutron_keystone_password,
+  ###[nova]
+$neutron_nova_auth_url             = $openstack::params::neutron_nova_auth_type,
+$neutron_nova_auth_type            = $openstack::params::neutron_nova_auth_type,
+$neutron_nova_project_domain_name  = $openstack::params::neutron_nova_project_domain_name,
+$neutron_nova_user_domain_name     = $openstack::params::neutron_nova_user_domain_name,
+$neutron_nova_region_name          = $openstack::params::neutron_nova_region_name,
+$neutron_nova_project_name         = $openstack::params::neutron_nova_project_name,
+$neutron_nova_username             = $openstack::params::neutron_nova_username,
+$neutron_nova_password             = $openstack::params::neutron_nova_password,
+  ### [Oslo_concurrency]
+$neutron_oslo_lock_path            = $openstack::params::neutron_oslo_lock_path,
+  
+  
+  ###/etc/neutron/plugins/ml2/ml2_conf.ini :
+  ### [Ml2]
+$neutron_ml2_type_drivers          = $openstack::params::neutron_ml2_type_drivers ,
+$neutron_ml2_tenant_network_types  = $openstack::params::neutron_ml2_tenant_network_types,
+$neutron_ml2_mechanism_drivers     = $openstack::params::neutron_ml2_mechanism_drivers,
+$neutron_ml2_extension_drivers     = $openstack::params::neutron_ml2_extension_drivers,
+  ### [Ml2_type_flat]
+$neutron_flat_flat_networks        = $openstack::params::neutron_flat_flat_networks,
+  ###[Ml2_type_vxlan]
+$neutron_flat_vxlan_vni_ranges     = $openstack::params::neutron_flat_vxlan_vni_ranges,
+  ###[securitygroup]
+$neutron_securitygroup_enable_ipset= $openstack::params::neutron_securitygroup_enable_ipset,
+
+  ### /etc/neutron/plugins/ml2/linuxbridge_agent.ini:
+  ###[linux_bridge]
+$neutron_agent_physical_interface_mappings=$openstack::params::neutron_agent_physical_interface_mappings,
+  ###[vxlan]
+$neutron_agent_enable_vxlan        = $openstack::params::neutron_agent_enable_vxlan,
+$neutron_agent_vxlan_local_ip      = $openstack::params::neutron_agent_vxlan_local_ip,
+$neutron_agent_vxlan_l2_population = $openstack::params::neutron_agent_vxlan_l2_population,
+  ###[securitygroup]
+$neutron_agent_enable_security_group= $openstack::params::neutron_agent_enable_security_group,
+$neutron_agent_firewall_driver     = $openstack::params::neutron_agent_firewall_driver,
+  
+  ### /etc/neutron/l3_agent.ini:
+  ###[DEFAULT]
+$neutron_l3agent_interface_driver  = $openstack::params::neutron_l3agent_interface_driver,
+  
+  ### /etc/neutron/dhcp_agent.ini:
+  ###[DEFAULT]
+$neutron_dhcp_interface_driver     = $openstack::params::neutron_dhcp_interface_driver,
+$neutron_dhcp_driver               = $openstack::params::neutron_dhcp_driver,
+$neutron_dhcp_enable_isolated_metadata= $openstack::params::neutron_dhcp_enable_isolated_metadata,
+  
+  ###/etc/neutron/metadata_agent.ini
+  ###[DEFAULT]
+$metadata_nova_metadata_ip         = $openstack::params::metadata_nova_metadata_ip,
+$metadata_proxy_shared_secret      = $openstack::params::metadata_proxy_shared_secret,
+  
+  ### /etc/nova/nova.conf
+$nova_neutron_url                  = $openstack::params::nova_neutron_url,
+$nova_neutron_auth_url             = $openstack::params::nova_neutron_auth_url,
+$nova_neutron_auth_type            = $openstack::params::nova_neutron_auth_type,
+$nova_neutron_project_domain_name  = $openstack::params::nova_neutron_project_domain_name,
+$nova_neutron_user_domain_name     = $openstack::params::nova_neutron_user_domain_name,
+$nova_neutron_region_name          = $openstack::params::nova_neutron_region_name,
+$nova_neutron_project_name	   = $openstack::params::nova_neutron_project_name,
+$nova_neutron_username       	   = $openstack::params::nova_neutron_username,
+$nova_neutron_password		   = $openstack::params::nova_neutron_password,
+$nova_neutron_service_metadata_proxy= $openstack::params::nova_neutron_service_metadata_proxy,
+$nova_neutron_metadata_proxy_shared_secret= $openstack::params::nova_neutron_metadata_proxy_shared_secret,
 
   
    
@@ -412,6 +496,95 @@ class openstack
   validate_string                	($nova_glance_api_servers)
   ###[oslo_concurrency]
   validate_string                	($nova_oslo_concurrency_lock_path)  
+    
+
+  #####  NEUTRON  ######
+  ###/etc/neutron/neutron.conf
+  ###DEFAULT
+  validate_string                       ($neutron_db_connection)
+  validate_string                       ($neutron_core_plugin)
+  validate_string                       ($neutron_service_plugins)
+  validate_bool                         ($neutron_allow_overlapping_ips)
+  validate_string                       ($neutron_rabbit_transport_url)
+  validate_string                       ($neutron_auth_strategy)
+  validate_bool                         ($neutron_notify_nova_on_port_status_changes)
+  validate_bool                         ($neutron_notify_nova_on_port_data_changes)
+  ###[keystone_authtoken]
+  validate_string                       ($neutron_keystone_auth_uri)
+  validate_string                       ($neutron_keystone_auth_url)
+  validate_string                       ($neutron_keystone_memcached_servers)
+  validate_string                       ($neutron_keystone_auth_type)
+  validate_string                       ($neutron_keystone_project_domain_name)
+  validate_string                       ($neutron_keystone_user_domain_name)
+  validate_string                       ($neutron_keystone_project_name)
+  validate_string                       ($neutron_keystone_username)
+  validate_string                       ($neutron_keystone_password)
+  ###[nova]
+  validate_string                       ($neutron_nova_auth_url)
+  validate_string                       ($neutron_nova_auth_type)
+  validate_string                       ($neutron_nova_project_domain_name)
+  validate_string                       ($neutron_nova_user_domain_name)
+  validate_string                       ($neutron_nova_region_name)
+  validate_string                       ($neutron_nova_project_name)
+  validate_string                       ($neutron_nova_username)
+  validate_string                       ($neutron_nova_password)
+  ### [Oslo_concurrency]
+  validate_string                       ($neutron_oslo_lock_path)      
+  
+  
+  ###/etc/neutron/plugins/ml2/ml2_conf.ini :
+  ### [Ml2]
+  validate_string                       ($neutron_ml2_type_drivers) 
+  validate_string                       ($neutron_ml2_tenant_network_types) 
+  validate_string                       ($neutron_ml2_mechanism_drivers) 
+  validate_string                       ($neutron_ml2_extension_drivers) 
+  ### [Ml2_type_flat]
+  validate_string                       ($neutron_flat_flat_networks) 
+  ###[Ml2_type_vxlan]
+  validate_string                       ($neutron_flat_vxlan_vni_ranges) 
+  ###[securitygroup]
+  validate_bool                         ($neutron_securitygroup_enable_ipset)
+
+  ### /etc/neutron/plugins/ml2/linuxbridge_agent.ini:
+  ###[linux_bridge]
+  validate_string                       ($neutron_agent_physical_interface_mappings)
+  ###[vxlan]
+  validate_bool                         ($neutron_agent_enable_vxlan) 
+  validate_string                       ($neutron_agent_vxlan_local_ip) 
+  validate_bool                         ($neutron_agent_vxlan_l2_population)
+  ###[securitygroup]
+  validate_bool                         ($neutron_agent_enable_security_group) 
+  validate_string                       ($neutron_agent_firewall_driver) 
+  
+  ### /etc/neutron/l3_agent.ini:
+  ###[DEFAULT]
+  validate_string                       ($neutron_l3agent_interface_driver) 
+  
+  ### /etc/neutron/dhcp_agent.ini:
+  ###[DEFAULT]
+  validate_string                       ($neutron_dhcp_interface_driver) 
+  validate_string                       ($neutron_dhcp_driver)
+  validate_bool                         ($neutron_dhcp_enable_isolated_metadata) 
+  
+  ###/etc/neutron/metadata_agent.ini
+  ###[DEFAULT]
+  validate_string                       ($metadata_nova_metadata_ip) 
+  validate_string                       ($metadata_proxy_shared_secret) 
+  
+  ### /etc/nova/nova.conf
+  validate_string                       ($nova_neutron_url) 
+  validate_string                       ($nova_neutron_auth_url) 
+  validate_string                       ($nova_neutron_auth_type) 
+  validate_string                       ($nova_neutron_project_domain_name) 
+  validate_string                       ($nova_neutron_user_domain_name) 
+  validate_string                       ($nova_neutron_region_name) 
+  validate_string                       ($nova_neutron_project_name)
+  validate_string                       ($nova_neutron_username)      
+  validate_string                       ($nova_neutron_password)
+  validate_bool                         ($nova_neutron_service_metadata_proxy)
+  validate_string                       ($nova_neutron_metadata_proxy_shared_secret)
+    
+    
     
   anchor { 'openstack::begin': } ->
     class { '::openstack::install': } ->
