@@ -303,7 +303,27 @@ $nova_neutron_password		   = $openstack::params::nova_neutron_password,
 $nova_neutron_service_metadata_proxy= $openstack::params::nova_neutron_service_metadata_proxy,
 $nova_neutron_metadata_proxy_shared_secret= $openstack::params::nova_neutron_metadata_proxy_shared_secret,
 
-  
+   #####  DASHBOARD  ######
+  ###/etc/openstack-dashboard/local_settings: 
+  $dashboard_OPENSTACK_HOST          = $openstack::params::dashboard_OPENSTACK_HOST,
+  $dashboard_ALLOWED_HOSTS           = $openstack::params::dashboard_ALLOWED_HOSTS, 
+  $dashboard_SESSION_ENGINE          = $openstack::params::dashboard_SESSION_ENGINE,
+  $dashboard_BACKEND                 = $openstack::params::dashboard_BACKEND,
+  $dashboard_LOCATION                = $openstack::params::dashboard_LOCATION,
+  $dashboard_OPENSTACK_KEYSTONE_URL  = $openstack::params::dashboard_OPENSTACK_KEYSTONE_URL,
+  $dashboard_OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT= $openstack::params::dashboard_OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT,
+  $dashboard_OPENSTACK_KEYSTONE_DEFAULT_DOMAIN= $openstack::params::dashboard_OPENSTACK_KEYSTONE_DEFAULT_DOMAIN,
+  $dashboard_OPENSTACK_KEYSTONE_DEFAULT_ROLE= $openstack::params::dashboard_OPENSTACK_KEYSTONE_DEFAULT_ROLE,
+  $dashboard_enable_router           = $openstack::params::dashboard_enable_router,
+  $dashboard_enable_quotas           = $openstack::params::dashboard_enable_quotas, 
+  $dashboard_enable_ipv6             = $openstack::params::dashboard_enable_ipv6, 
+  $dashboard_enable_distributed_router= $openstack::params::dashboard_enable_distributed_router,
+  $dashboard_enable_ha_router        = $openstack::params::dashboard_enable_ha_router,
+  $dashboard_enable_lb               = $openstack::params::dashboard_enable_lb,
+  $dashboard_enable_firewall         = $openstack::params::dashboard_enable_firewall,
+  $dashboard_enable_vpn              = $openstack::params::dashboard_enable_vpn,
+  $dashboard_enable_fip_topology_check= $openstack::params::dashboard_enable_fip_topology_check,
+  $dashboard_TIME_ZONE               = $openstack::params::dashboard_TIME_ZONE,
    
 ) inherits openstack::params  
 {
@@ -584,7 +604,27 @@ $nova_neutron_metadata_proxy_shared_secret= $openstack::params::nova_neutron_met
   validate_bool                         ($nova_neutron_service_metadata_proxy)
   validate_string                       ($nova_neutron_metadata_proxy_shared_secret)
     
-    
+  #####  DASHBOARD  ######
+  ###/etc/openstack-dashboard/local_settings: 
+  validate_string                       ($dashboard_OPENSTACK_HOST)
+  validate_string                       ($dashboard_ALLOWED_HOSTS)
+  validate_string                       ($dashboard_SESSION_ENGINE)
+  validate_string                       ($dashboard_BACKEND)
+  validate_string                       ($dashboard_LOCATION)
+  validate_string                       ($dashboard_OPENSTACK_KEYSTONE_URL)
+  validate_bool                       ($dashboard_OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT)
+  validate_string                       ($dashboard_OPENSTACK_KEYSTONE_DEFAULT_DOMAIN)
+  validate_string                       ($dashboard_OPENSTACK_KEYSTONE_DEFAULT_ROLE)
+  validate_bool                         ($dashboard_enable_router)
+  validate_bool                         ($dashboard_enable_quotas)
+  validate_bool                         ($dashboard_enable_ipv6)
+  validate_bool                         ($dashboard_enable_distributed_router)
+  validate_bool                         ($dashboard_enable_ha_router)
+  validate_bool                         ($dashboard_enable_lb)
+  validate_bool                         ($dashboard_enable_firewall)
+  validate_bool                         ($dashboard_enable_vpn)
+  validate_bool                         ($dashboard_enable_fip_topology_check)
+  validate_string                       ($dashboard_TIME_ZONE)   
     
   anchor { 'openstack::begin': } ->
     class { '::openstack::install': } ->

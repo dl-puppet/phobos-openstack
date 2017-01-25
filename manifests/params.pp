@@ -31,6 +31,7 @@ class openstack::params
                                              'openstack-neutron-ml2',
                                              'openstack-neutron-linuxbridge',
                                              'ebtables',
+                                             'openstack-dashboard',
                                              ]
                                              
       	$package_ensure                    = 'present'
@@ -47,17 +48,22 @@ class openstack::params
 	                                     'chronyd',
 	                                     'mariadb',
 	                                     'mongod',
-                                             'rabbitmq-server',
-                                             'memcached',
-                                             'httpd',
-                                             'openstack-glance-api',
-                                             'openstack-glance-registry',
-					     'openstack-nova-api',
-					     'openstack-nova-consoleauth',
-                                             'openstack-nova-scheduler',
-                                             'openstack-nova-conductor',
-                                             'openstack-nova-novncproxy',	
-                                             ]
+                                       'rabbitmq-server',
+                                       'memcached',
+                                       'httpd',
+                                       'openstack-glance-api',
+                                       'openstack-glance-registry',
+					                             'openstack-nova-api',
+					                             'openstack-nova-consoleauth',
+                                       'openstack-nova-scheduler',
+                                       'openstack-nova-conductor',
+                                       'openstack-nova-novncproxy',
+                                       'neutron-server',
+                                       'neutron-linuxbridge-agent',	
+                                       'neutron-dhcp-agent',
+                                       'neutron-metadata-agent',
+                                       'neutron-l3-agent',
+                                       ]
 	$service_ensure                    = running            
 	$service_enable                    = true
 	$service_hasstatus                 = true
@@ -120,8 +126,8 @@ class openstack::params
       	$ifcfg_ethtool_opts                = 'autoneg off speed 100 duplex full'
       
       	# /etc/sysconfig/network-script/ifcfg-eth1:  
-      	$ifcfg_device2                     = 'eth1'
-      	$ifcfg_name2                       = 'eth1'
+      	$ifcfg_device2                     = 'esn9'
+      	$ifcfg_name2                       = 'esn9'
 		
 	# /etc/host.conf:	
 	$host_conf                         =  "order hosts,bind"
@@ -296,10 +302,10 @@ class openstack::params
 
   ### /etc/neutron/plugins/ml2/linuxbridge_agent.ini:
   ###[linux_bridge]
-  $neutron_agent_physical_interface_mappings= 'provider:eth0'  #PROVIDER_INTERFACE_NAME!!!!!!!!!!!!!!!!!!!!!!!!!
+  $neutron_agent_physical_interface_mappings= 'provider:ens9'  #PROVIDER_INTERFACE_NAME
   ###[vxlan]
   $neutron_agent_enable_vxlan        = true
-  $neutron_agent_vxlan_local_ip      = '192.168.122.200'       #OVERLAY_INTERFACE_IP_ADDRESS !!!!!!!!!!!!!!!!
+  $neutron_agent_vxlan_local_ip      = '192.168.122.200'       #OVERLAY_INTERFACE_IP_ADDRESS
   $neutron_agent_vxlan_l2_population = true
   ###[securitygroup]
   $neutron_agent_enable_security_group= true
@@ -332,5 +338,27 @@ class openstack::params
   $nova_neutron_password             = 'PWDGOP'
   $nova_neutron_service_metadata_proxy= true
   $nova_neutron_metadata_proxy_shared_secret= 'METADATA_SECRET'
+
+  #####  DASHBOARD  ######
+  ###/etc/openstack-dashboard/local_settings: 
+  $dashboard_OPENSTACK_HOST          = 'controller1'
+  $dashboard_ALLOWED_HOSTS           = "['*', ]"
+  $dashboard_SESSION_ENGINE          = 'django.contrib.sessions.backends.cache'
+  $dashboard_BACKEND                 = 'django.core.cache.backends.memcached.MemcachedCache'
+  $dashboard_LOCATION                = 'controller1:11211'
+  $dashboard_OPENSTACK_KEYSTONE_URL  = 'http://%s:5000/v3" % OPENSTACK_HOST'
+  $dashboard_OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT= true
+  $dashboard_OPENSTACK_KEYSTONE_DEFAULT_DOMAIN= 'Default'
+  $dashboard_OPENSTACK_KEYSTONE_DEFAULT_ROLE= 'user'
+  $dashboard_enable_router           = true
+  $dashboard_enable_quotas           = true
+  $dashboard_enable_ipv6             = false
+  $dashboard_enable_distributed_router= true
+  $dashboard_enable_ha_router        = true
+  $dashboard_enable_lb               = false
+  $dashboard_enable_firewall         = true
+  $dashboard_enable_vpn              = true
+  $dashboard_enable_fip_topology_check= true
+  $dashboard_TIME_ZONE               = 'UTC'
 
 }

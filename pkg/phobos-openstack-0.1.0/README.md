@@ -197,17 +197,21 @@ En tant qu'utilisateur admin, demander un jeton d'authentification: Cette comm
 $ openstack --os-auth-url http://controller:35357/v3 --os-project-domain-name default --os-user-domain-name default --os-project-name admin --os-username admin token issue
 
 
-
-
 GLANCE:
 Peupler la base de données de service de l'image:
 # su -s /bin/sh -c "glance-manage db_sync" glance
 
 
 
+Compute service NOVA:
+Peupler les bases de données Compute:
+# su -s /bin/sh -c "nova-manage api_db sync" nova
+# su -s /bin/sh -c "nova-manage db sync" nova
 
 
-
+NEUTRON:
+# su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
+  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head" neutron
 
 
 

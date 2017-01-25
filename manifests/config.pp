@@ -72,8 +72,8 @@ class openstack::config inherits openstack
                     content => template("openstack/network/route-eth0.erb");
                          
                     # Configuration /etc/sysconfig/network-scripts/ifcfg-eth1:
-                    "/etc/sysconfig/network-scripts/ifcfg-eth1" :
-                    content => template("openstack/network/ifcfg-eth1.erb");  
+                    "/etc/sysconfig/network-scripts/ifcfg-ens9" :
+                    content => template("openstack/network/ifcfg-ens9.erb");  
                     
                     
                     ###### MARIADB ##### 
@@ -132,6 +132,10 @@ class openstack::config inherits openstack
                     "/etc/neutron/plugin.ini":
                     ensure => 'link',
                     target => '/etc/neutron/plugins/ml2/ml2_conf.ini';
+                    
+                    ###### DASHBOARD #####                   
+                    '/etc/openstack-dashboard/local_settings' :
+                    content => template("openstack/dashboard/local_settings.erb"),
                     
               }                                                     
 }

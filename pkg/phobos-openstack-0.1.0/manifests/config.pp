@@ -72,8 +72,8 @@ class openstack::config inherits openstack
                     content => template("openstack/network/route-eth0.erb");
                          
                     # Configuration /etc/sysconfig/network-scripts/ifcfg-eth1:
-                    "/etc/sysconfig/network-scripts/ifcfg-eth1" :
-                    content => template("openstack/network/ifcfg-eth1.erb");  
+                    "/etc/sysconfig/network-scripts/ifcfg-ens9" :
+                    content => template("openstack/network/ifcfg-ens9.erb");  
                     
                     
                     ###### MARIADB ##### 
@@ -114,10 +114,28 @@ class openstack::config inherits openstack
                     content => template("openstack/nova/nova.conf.erb");
                     
                     ###### NEUTRON #####                   
-                    #'/etc/neutron/neutron.conf' :
-                    #content => template("openstack/neutron/neutron.conf.erb"),                    
+                    '/etc/neutron/neutron.conf' :
+                    content => template("openstack/neutron/neutron.conf.erb");                    
                     
+                    '/etc/neutron/plugins/ml2/ml2_conf.ini' :
+                    content => template("openstack/neutron/ml2_conf.ini.erb");
                     
+                    '/etc/neutron/plugins/ml2/linuxbridge_agent.ini' :
+                    content => template("openstack/neutron/linuxbridge_agent.ini.erb");
+                    
+                    '/etc/neutron/l3_agent.ini' :
+                    content => template("openstack/neutron/l3_agent.ini.erb");
+                    
+                    '/etc/neutron/metadata_agent.ini' :
+                    content => template("openstack/neutron/metadata_agent.ini.erb");
+                    
+                    "/etc/neutron/plugin.ini":
+                    ensure => 'link',
+                    target => '/etc/neutron/plugins/ml2/ml2_conf.ini';
+                    
+                    ###### DASHBOARD #####                   
+                    '/etc/openstack-dashboard/local_settings' :
+                    content => template("openstack/dashboard/local_settings.erb"),
                     
               }                                                     
 }

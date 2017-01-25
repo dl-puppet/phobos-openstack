@@ -31,7 +31,9 @@ class openstack::params
                                              'openstack-neutron-ml2',
                                              'openstack-neutron-linuxbridge',
                                              'ebtables',
+                                             'openstack-dashboard',
                                              ]
+                                             
       	$package_ensure                    = 'present'
 
 	##### CONFIG_FILES #####   
@@ -46,17 +48,22 @@ class openstack::params
 	                                     'chronyd',
 	                                     'mariadb',
 	                                     'mongod',
-                                             'rabbitmq-server',
-                                             'memcached',
-                                             'httpd',
-                                             'openstack-glance-api',
-                                             'openstack-glance-registry',
-					     'openstack-nova-api',
-					     'openstack-nova-consoleauth',
-                                             'openstack-nova-scheduler',
-                                             'openstack-nova-conductor',
-                                             'openstack-nova-novncproxy',	
-                                             ]
+                                       'rabbitmq-server',
+                                       'memcached',
+                                       'httpd',
+                                       'openstack-glance-api',
+                                       'openstack-glance-registry',
+					                             'openstack-nova-api',
+					                             'openstack-nova-consoleauth',
+                                       'openstack-nova-scheduler',
+                                       'openstack-nova-conductor',
+                                       'openstack-nova-novncproxy',
+                                       'neutron-server',
+                                       'neutron-linuxbridge-agent',	
+                                       'neutron-dhcp-agent',
+                                       'neutron-metadata-agent',
+                                       'neutron-l3-agent',
+                                       ]
 	$service_ensure                    = running            
 	$service_enable                    = true
 	$service_hasstatus                 = true
@@ -119,8 +126,8 @@ class openstack::params
       	$ifcfg_ethtool_opts                = 'autoneg off speed 100 duplex full'
       
       	# /etc/sysconfig/network-script/ifcfg-eth1:  
-      	$ifcfg_device2                     = 'eth1'
-      	$ifcfg_name2                       = 'eth1'
+      	$ifcfg_device2                     = 'esn9'
+      	$ifcfg_name2                       = 'esn9'
 		
 	# /etc/host.conf:	
 	$host_conf                         =  "order hosts,bind"
@@ -139,32 +146,32 @@ class openstack::params
 	$keystone_debug                    = false 
 	$keystone_log_dir                  = '/var/log/keystone'
 	$keystone_verbose                  = '#verbose = true'
-      	$keystone_token                    = 'keytoken'
-      	$keystone_connection               = 'mysql+pymysql://keystone:PWDGOP@controller1/keystonedb'
-      	$keystone_retry_interval           = '5'
-      	$keystone_max_retry                = '-1'
-      	$keystone_server_memcache          = 'controller1:11211'
-      	$keystone_token_provider           = 'fernet'
-      	$keystone_token_driver             = 'keystone.token.persistence.backends.memcache.Token'
-      	$keystone_revoke_driver            = 'keystone.contrib.revoke.backends.sql.Revoke'
-      	$keystone_token_auth               = '' # permet de retirer admin_token_auth du fichier /etc/keystone/keystone-paste.ini 
+  $keystone_token                    = 'keytoken'
+  $keystone_connection               = 'mysql+pymysql://keystone:PWDGOP@controller1/keystonedb'
+  $keystone_retry_interval           = '5'
+  $keystone_max_retry                = '-1'
+  $keystone_server_memcache          = 'controller1:11211'
+  $keystone_token_provider           = 'fernet'
+  $keystone_token_driver             = 'keystone.token.persistence.backends.memcache.Token'
+  $keystone_revoke_driver            = 'keystone.contrib.revoke.backends.sql.Revoke'
+  $keystone_token_auth               = '' # permet de retirer admin_token_auth du fichier /etc/keystone/keystone-paste.ini 
 
 	#####   GLANCE  ######
 	$glance_connection                 = 'mysql+pymysql://glance:PWDGOP@controller1/glancedb'
-      	$glance_max_retries                = '-1'
-      	$glance_retry_interval             = '5'
-      	$glance_backend                    = 'sqlalchemy'
-      	$glance_auth_uri                   = 'http://controller1:5000'
-      	$glance_auth_url                   = 'http://controller1:35357'
-      	$glance_memcached_servers          = 'controller1:11211'
-      	$glance_auth_type                  = 'password'
-      	$glance_project_domain_name        = 'Default'
-      	$glance_user_domain_name           = 'Default'
-      	$glance_project_name               = 'service'
-      	$glance_username                   = 'glance'
-      	$glance_password                   = 'PWDGOP'
-      	$glance_flavor                     = 'keystone'
-      	$glance_stores                     = 'file,http'
+  $glance_max_retries                = '-1'
+  $glance_retry_interval             = '5'
+  $glance_backend                    = 'sqlalchemy'
+  $glance_auth_uri                   = 'http://controller1:5000'
+  $glance_auth_url                   = 'http://controller1:35357'
+  $glance_memcached_servers          = 'controller1:11211'
+  $glance_auth_type                  = 'password'
+  $glance_project_domain_name        = 'Default'
+  $glance_user_domain_name           = 'Default'
+  $glance_project_name               = 'service'
+  $glance_username                   = 'glance'
+  $glance_password                   = 'PWDGOP'
+  $glance_flavor                     = 'keystone'
+  $glance_stores                     = 'file,http'
 	$glance_default_store              = 'file'
 	$glance_filesystem_store_datadir   = '/var/lib/glance/images/'
 	$glance_rabbit_host                = 'controller1'
@@ -204,7 +211,7 @@ class openstack::params
 	$glance_registry_flavor            = 'keystone'
 		  
 
-      	#####  NOVA  ######
+  #####  NOVA  ######
 	###[DEFAULT] 
 	$nova_enabled_apis                 = 'osapi_compute,metadata'  
 	$nova_rpc_backend                  = 'rabbit'
@@ -212,7 +219,7 @@ class openstack::params
 	$nova_my_ip                        = '192.168.154.200'
 	$nova_use_neutron                  = true
 	$nova_firewall_driver              = 'nova.virt.firewall.NoopFirewallDriver'
-	$nova_rabbit_transport_url	   = 'rabbit://openstack:RABBIT_PASS@controller1'
+	$nova_rabbit_transport_url	       = 'rabbit://openstack:RABBIT_PASS@controller1'
 	###[api_database]
 	$nova_api_connection               = 'mysql+pymysql://nova:PWDGOP@controller1/novadb'  
 	$nova_api_retry_interval           = '5'
@@ -245,4 +252,113 @@ class openstack::params
 	$nova_glance_api_servers           = 'http://controller1:9292'
 	###[oslo_concurrency]
 	$nova_oslo_concurrency_lock_path   = '/var/lib/nova/tmp'
+	
+  #####  NEUTRON  ######
+  ###/etc/neutron/neutron.conf
+  ###DEFAULT
+  $neutron_db_connection             = 'mysql+pymysql://neutron:PWDGOP@controller1/neutrondb'
+  $neutron_core_plugin               = 'ml2'
+  $neutron_service_plugins           = 'router'
+  $neutron_allow_overlapping_ips     = true   #True avec Majuscule
+  $neutron_rabbit_transport_url      = 'rabbit://openstack:RABBIT_PASS@controller1'
+  $neutron_auth_strategy             = 'keystone'
+  $neutron_notify_nova_on_port_status_changes= true  #True avec Majuscule
+  $neutron_notify_nova_on_port_data_changes  = true  #True avec Majuscule
+  ###[keystone_authtoken]
+  $neutron_keystone_auth_uri         = 'http://controller1:5000'
+  $neutron_keystone_auth_url         = 'http://controller1:35357'
+  $neutron_keystone_memcached_servers= 'controller1:11211'
+  $neutron_keystone_auth_type        = 'password'
+  $neutron_keystone_project_domain_name= 'Default'
+  $neutron_keystone_user_domain_name = 'Default'
+  $neutron_keystone_project_name     = 'service'
+  $neutron_keystone_username         = 'nova'
+  $neutron_keystone_password         = 'PWDGOP'
+  ###[nova]
+  $neutron_nova_auth_url             = 'http://controller1:35357'
+  $neutron_nova_auth_type            = 'password'
+  $neutron_nova_project_domain_name  = 'Default'
+  $neutron_nova_user_domain_name     = 'Default'
+  $neutron_nova_region_name          = 'onepoint'
+  $neutron_nova_project_name         = 'service'
+  $neutron_nova_username             = 'nova'
+  $neutron_nova_password             = 'PWDGOP'
+  ### [Oslo_concurrency]
+  $neutron_oslo_lock_path            = '/var/lib/neutron/tmp'      
+  
+  
+  ###/etc/neutron/plugins/ml2/ml2_conf.ini :
+  ### [Ml2]
+  $neutron_ml2_type_drivers          = 'flat,vlan,vxlan'
+  $neutron_ml2_tenant_network_types  = 'vxlan'
+  $neutron_ml2_mechanism_drivers     = 'linuxbridge,l2population'
+  $neutron_ml2_extension_drivers     = 'port_security'
+  ### [Ml2_type_flat]
+  $neutron_flat_flat_networks        = 'provider'
+  ###[Ml2_type_vxlan]
+  $neutron_flat_vxlan_vni_ranges     = '1:1000'
+  ###[securitygroup]
+  $neutron_securitygroup_enable_ipset= true #True avec Majuscule
+
+  ### /etc/neutron/plugins/ml2/linuxbridge_agent.ini:
+  ###[linux_bridge]
+  $neutron_agent_physical_interface_mappings= 'provider:ens9'  #PROVIDER_INTERFACE_NAME
+  ###[vxlan]
+  $neutron_agent_enable_vxlan        = true
+  $neutron_agent_vxlan_local_ip      = '192.168.122.200'       #OVERLAY_INTERFACE_IP_ADDRESS
+  $neutron_agent_vxlan_l2_population = true
+  ###[securitygroup]
+  $neutron_agent_enable_security_group= true
+  $neutron_agent_firewall_driver     = 'neutron.agent.linux.iptables_firewall.IptablesFirewallDriver'
+	
+	### /etc/neutron/l3_agent.ini:
+	###[DEFAULT]
+	$neutron_l3agent_interface_driver  = 'neutron.agent.linux.interface.BridgeInterfaceDriver'
+	
+	### /etc/neutron/dhcp_agent.ini:
+	###[DEFAULT]
+	$neutron_dhcp_interface_driver     = 'neutron.agent.linux.interface.BridgeInterfaceDriver'
+	$neutron_dhcp_driver               = 'neutron.agent.linux.dhcp.Dnsmasq'
+	$neutron_dhcp_enable_isolated_metadata= true  #True avec Majuscule
+	
+	###/etc/neutron/metadata_agent.ini
+	###[DEFAULT]
+	$metadata_nova_metadata_ip         = 'controller1'
+	$metadata_proxy_shared_secret      = 'METADATA_SECRET'
+	
+	### /etc/nova/nova.conf
+  $nova_neutron_url                  = 'http://controller1:9696'
+  $nova_neutron_auth_url             = 'http://controller1:35357'
+  $nova_neutron_auth_type            = 'password'
+  $nova_neutron_project_domain_name  = 'Default'
+  $nova_neutron_user_domain_name     = 'Default'
+  $nova_neutron_region_name          = 'onepoint'
+  $nova_neutron_project_name         = 'service'
+  $nova_neutron_username             = 'neutron'        
+  $nova_neutron_password             = 'PWDGOP'
+  $nova_neutron_service_metadata_proxy= true
+  $nova_neutron_metadata_proxy_shared_secret= 'METADATA_SECRET'
+
+  #####  DASHBOARD  ######
+  ###/etc/openstack-dashboard/local_settings: 
+  $dashboard_OPENSTACK_HOST          = 'controller1'
+  $dashboard_ALLOWED_HOSTS           = "['*', ]"
+  $dashboard_SESSION_ENGINE          = 'django.contrib.sessions.backends.cache'
+  $dashboard_BACKEND                 = 'django.core.cache.backends.memcached.MemcachedCache'
+  $dashboard_LOCATION                = 'controller1:11211'
+  $dashboard_OPENSTACK_KEYSTONE_URL  = 'http://%s:5000/v3" % OPENSTACK_HOST'
+  $dashboard_OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT= true
+  $dashboard_OPENSTACK_KEYSTONE_DEFAULT_DOMAIN= 'Default'
+  $dashboard_OPENSTACK_KEYSTONE_DEFAULT_ROLE= 'user'
+  $dashboard_enable_router           = true
+  $dashboard_enable_quotas           = true
+  $dashboard_enable_ipv6             = false
+  $dashboard_enable_distributed_router= true
+  $dashboard_enable_ha_router        = true
+  $dashboard_enable_lb               = false
+  $dashboard_enable_firewall         = true
+  $dashboard_enable_vpn              = true
+  $dashboard_enable_fip_topology_check= true
+  $dashboard_TIME_ZONE               = 'UTC'
+
 }
