@@ -62,9 +62,9 @@ class openstack::config inherits openstack
                     content => template("openstack/network/resolv.erb");
 
                     # Configuration des interfaces reseaux:
-		    "/etc/sysconfig/network-scripts/ifcfg-eth0" :
-		    content => template("openstack/network/ifcfg-eth0.erb");
-		    #replace => "no";
+								    "/etc/sysconfig/network-scripts/ifcfg-eth0" :
+								    content => template("openstack/network/ifcfg-eth0.erb");
+								    #replace => "no";
                     #notify  => Service['$openstack::service_name'];
                     
                     # Configuration de la route eth0:
@@ -72,8 +72,8 @@ class openstack::config inherits openstack
                     content => template("openstack/network/route-eth0.erb");
                          
                     # Configuration /etc/sysconfig/network-scripts/ifcfg-eth1:
-                    "/etc/sysconfig/network-scripts/ifcfg-ens9" :
-                    content => template("openstack/network/ifcfg-ens9.erb");  
+                    "/etc/sysconfig/network-scripts/ifcfg-eth1" :
+                    content => template("openstack/network/ifcfg-eth1.erb");  
                     
                     
                     ###### MARIADB ##### 
@@ -120,22 +120,31 @@ class openstack::config inherits openstack
                     '/etc/neutron/plugins/ml2/ml2_conf.ini' :
                     content => template("openstack/neutron/ml2_conf.ini.erb");
                     
-                    '/etc/neutron/plugins/ml2/linuxbridge_agent.ini' :
-                    content => template("openstack/neutron/linuxbridge_agent.ini.erb");
+			                    '/etc/neutron/plugins/ml2/linuxbridge_agent.ini' :
+			                    content => template("openstack/neutron/linuxbridge_agent.ini.erb");
+			                    
+			                    '/etc/neutron/plugins/ml2/openvswitch_agent.ini' :
+                          content => template("openstack/neutron/openvswitch_agent.ini.erb");
                     
                     '/etc/neutron/l3_agent.ini' :
                     content => template("openstack/neutron/l3_agent.ini.erb");
-                    
+                               
+                    '/etc/neutron/dhcp_agent.ini' :
+                    content => template("openstack/neutron/dhcp_agent.ini.erb");   
+                            '/etc/neutron/dnsmasq-neutron.conf' :
+                            content => template("openstack/neutron/dnsmasq-neutron.conf.erb");              
+                                
                     '/etc/neutron/metadata_agent.ini' :
                     content => template("openstack/neutron/metadata_agent.ini.erb");
                     
-                    "/etc/neutron/plugin.ini":
+                    '/etc/neutron/plugin.ini' :
                     ensure => 'link',
                     target => '/etc/neutron/plugins/ml2/ml2_conf.ini';
                     
                     ###### DASHBOARD #####                   
                     '/etc/openstack-dashboard/local_settings' :
-                    content => template("openstack/dashboard/local_settings.erb"),
+                    content => template("openstack/dashboard/local_settings.erb");
+
                     
               }                                                     
 }
